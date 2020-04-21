@@ -1,0 +1,11 @@
+.idea/
+
+*/__pycache__
+/__pycache__
+/Peekpa/__pycache__
+/apps/*/__pycache__
+
+/front/node_modules
+
+/front/package-lock.json
+
