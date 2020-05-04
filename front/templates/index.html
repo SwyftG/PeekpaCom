@@ -1,318 +1,383 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Album example · Bootstrap</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-
-    <!-- Bootstrap core CSS -->
+    <meta charset="UTF-8">
+    <title>Peekpa</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.3/examples/album/album.css" rel="stylesheet">
 </head>
-<body>
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other
-                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
-                        Then, link them off to some social networking sites or contact information.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
-                     viewBox="0 0 24 24" focusable="false">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                    <circle cx="12" cy="13" r="4"/>
-                </svg>
-                <strong>Album</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+<body style="background-color: #f5f6f9">
+
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark">
+    <div class="collapse navbar-collapse pl-4 ml-4">
+        <a class="navbar-brand mr-4 " href="/"><p class="h2 mb-0"><b>Peekpa</b></p></a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item mr-4">
+                <a class="nav-link" href="#">首页</a>
+            </li>
+            <li class="nav-item mr-4">
+                <a class="nav-link active" href="#">文章</a>
+            </li>
+            <li class="nav-item mr-4">
+                <a class="nav-link" href="#">论坛</a>
+            </li>
+            <li class="nav-item mr-4">
+                <a class="nav-link" href="#">更多精选</a>
+            </li>
+        </ul>
     </div>
 </header>
 
-<main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Album example</h1>
-            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
-                etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- 大焦点图 -->
+            <div class="row" style="height: 230px;background-color: white">
+                <div class="col-md-7 p-0">
+                    <a href="#" class="w-100 h-100">
+                        <img src="https://via.placeholder.com/806x260" class="w-100 h-100">
+                    </a>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
+                <div class="col-md-5">
+                    <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#" class="text-decoration-none text-dark" style="">如何让Python爬虫一天抓取100万张网页</a>
+                    </p>
+                    <div class="d-flex flex-row justify-content-between mt-2">
+                        <p class="font-weight-light small pl-1 ">皮爷撸码</p>
+                        <p class="font-weight-light small pr-1">2019-12-02</p>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <p class="small" style="font-size: 95%;">
+                        前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
 
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                             xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                             role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <!-- 三小图 -->
+            <div class="row mt-2 justify-content-between" style="height: 130px;">
+                <!-- 三小图(左) -->
+                <div class="col-sm-4 pl-0 pr-1 position-relative">
+                    <a href="#" class="w-100 h-100">
+                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                        <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                            <p class="small m-1 text-light">
+                                如何让Python爬虫一天抓取100万张网页如何让Python爬虫一天抓取100万张网页
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <!-- 三小图(中) -->
+                <div class="col-sm-4 pl-1 pr-1 position-relative">
+                    <a href="#" class="w-100 h-100">
+                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                        <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                            <p class="small m-1 text-light">
+                                利用爬虫挣钱系列2-细说数据整合
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <!-- 三小图(右) -->
+                <div class="col-sm-4 pl-1 pr-0 position-relative">
+                    <a href="#" class="w-100 h-100">
+                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                        <div class="position-absolute" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                            <p class="small m-1 text-light">
+                                分享我曾经的学习和找工作经历
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 左侧文章列表 -->
+            <div class="row mt-3">
+                <ul class="col-sm-12 d-block">
+
+                    <!-- 文章 一 -->
+                    <li class="row mb-3" style="height: 180px;background-color: white">
+                        <div class="col-sm-4 p-3 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                                <div class="position-absolute mt-3"
+                                     style="top:0;background-color: rgba(32,120,255,0.5)">
+                                    <p class="small m-1 text-light">Python爬虫开发</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 d-flex flex-column">
+                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
+                                                                          class="text-decoration-none text-dark">Python
+                                的控制流代码混淆</a>
+                            </p>
+                            <p class="small mt-2" style="font-size: 95%;">聊下 Python 的代码混淆，对 Python
+                                的代码做混淆感觉是不伦不类，但是对于外包项目交付型的，又有一些需要。混淆的目的就是加大别...</p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
+                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
+                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- 文章 二 -->
+                    <li class="row mb-3" style="height: 180px;background-color: white">
+                        <div class="col-sm-4 p-3 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                                <div class="position-absolute mt-3"
+                                     style="top:0;background-color: rgba(32,120,255,0.5)">
+                                    <p class="small m-1 text-light">Python爬虫开发</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 d-flex flex-column">
+                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
+                                                                          class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <p class="small mt-2" style="font-size: 95%;">
+                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
+                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
+                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- 文章 三 -->
+                    <li class="row mb-3" style="height: 180px;background-color: white">
+                        <div class="col-sm-4 p-3 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                                <div class="position-absolute mt-3"
+                                     style="top:0;background-color: rgba(32,120,255,0.5)">
+                                    <p class="small m-1 text-light">Python爬虫开发</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 d-flex flex-column">
+                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
+                                                                          class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <p class="small mt-2" style="font-size: 95%;">
+                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
+                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
+                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- 文章 四 -->
+                    <li class="row mb-3" style="height: 180px;background-color: white">
+                        <div class="col-sm-4 p-3 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                                <div class="position-absolute mt-3"
+                                     style="top:0;background-color: rgba(32,120,255,0.5)">
+                                    <p class="small m-1 text-light">Python爬虫开发</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-8 d-flex flex-column">
+                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
+                                                                          class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <p class="small mt-2" style="font-size: 95%;">
+                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
+                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
+                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
         </div>
+        <!-- 右侧 -->
+        <div class="col-md-4">
+
+            <!-- 公众号广告 -->
+            <div class="row ml-1" style="background-color: white">
+                <div class="col-sm-12 mt-4">
+                    <p class="h5 border-bottom pb-2 mb-2">『皮爷撸码』公众号</p>
+                </div>
+            </div>
+            <div class="row ml-1" style="background-color: white; height: 285px;">
+                <div class="col-sm-12 p-0 text-center h-100 pb-2">
+                    <img src="https://via.placeholder.com/300x300" class="w-80 h-100">
+                </div>
+            </div>
+
+            <!-- 文章板块 -->
+            <div class="row ml-1 mt-4" style="background-color: white">
+                <div class="col-sm-12 mt-4">
+                    <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">『皮爷撸码』阅读排行榜</p>
+                </div>
+            </div>
+            <!-- 文章列表 -->
+            <div class="row ml-1" style="background-color: white">
+                <ul class="col-sm-12 d-block">
+                    <!-- 列表内容一 -->
+                    <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
+                        <div class="col-sm-5 pl-0 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                            </a>
+                        </div>
+                        <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
+                            <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small mb-0">阅读(1024)</p>
+                                <p class="font-weight-light small mb-0">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 列表内容二 -->
+                    <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
+                        <div class="col-sm-5 pl-0 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                            </a>
+                        </div>
+                        <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
+                            <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small mb-0">阅读(1024)</p>
+                                <p class="font-weight-light small mb-0">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 列表内容三 -->
+                    <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
+                        <div class="col-sm-5 pl-0 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                            </a>
+                        </div>
+                        <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
+                            <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small mb-0">阅读(1024)</p>
+                                <p class="font-weight-light small mb-0">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 列表内容四 -->
+                    <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
+                        <div class="col-sm-5 pl-0 h-100">
+                            <a href="#" class="w-100 h-100">
+                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
+                            </a>
+                        </div>
+                        <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
+                            <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small mb-0">阅读(1024)</p>
+                                <p class="font-weight-light small mb-0">2019-12-02</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 友链板块 -->
+            <div class="row ml-1 mt-4" style="background-color: white">
+                <div class="col-sm-12 mt-4">
+                    <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">友情链接</p>
+                </div>
+            </div>
+
+            <!-- 友链数据 -->
+            <div class="row ml-1" style="background-color: white">
+                <ul class="list-unstyled row col-sm-12 pl-1 ml-0 ">
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 1
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 2
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 3
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 4
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 5
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 66
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 7
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 8
+                        </a>
+                    </li>
+
+                    <li class=" col-sm-6">
+                        <a href="#" class="text-decoration-none text-dark">
+                            Address 9
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small" style="background-color: #33333333">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 bg-dark" style="color: #ffffff88;">© 2020 Copyright:
+        <a href="https://www.peekpa.com/" class="pl-2"> Peekpa.com</a>
     </div>
 
-</main>
-
-<footer class="text-muted">
-    <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a
-                href="/docs/4.3/getting-started/introduction/">getting started guide</a>.</p>
-    </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<!-- Footer -->
 </body>
 </html>
