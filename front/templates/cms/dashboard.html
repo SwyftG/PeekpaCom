@@ -8,24 +8,24 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/fontawesome-free/css/all.min.css' %}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
-          href="../dist/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+          href="{% static 'adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/jqvmap/jqvmap.min.css' %}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../dist/adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{% static 'adminlte/dist/css/adminlte.min.css' %}">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/daterangepicker/daterangepicker.css' %}">
     <!-- summernote -->
-    <link rel="stylesheet" href="../dist/adminlte/plugins/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="{% static 'adminlte/plugins/summernote/summernote-bs4.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -90,7 +90,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">
+                                <a href="../index.html" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dashboard v1</p>
                                 </a>
@@ -129,7 +129,7 @@
                     <p class="h5">公众号『皮爷撸码』，连载更新此系统的开发教程，敬请关注</p>
                 </div>
                 <div class="row d-flex justify-content-around">
-                    <img class="img-thumbnail" src="../src/images/pylm-qrcode.jpg" alt="">
+                    <img class="img-thumbnail" src="https://www.peekpa.tech/asserts/img/qrcode.jpg" alt="">
                 </div>
             </div>
         </section>
@@ -138,28 +138,28 @@
 </div>
 
 <!-- jQuery -->
-<script src="../dist/adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="{% static 'adminlte/plugins/jquery/jquery.min.js' %}"></script>
 <!-- jQuery UI 1.11.4 -->
 
 <!-- Bootstrap 4 -->
-<script src="../dist/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- ChartJS -->
-<script src="../dist/adminlte/plugins/chart.js/Chart.min.js"></script>
+<script src="{% static 'adminlte/plugins/chart.js/Chart.min.js' %}"></script>
 <!-- Sparkline -->
-<script src="../dist/adminlte/plugins/sparklines/sparkline.js"></script>
+<script src="{% static 'adminlte/plugins/sparklines/sparkline.js' %}"></script>
 <!-- jQuery Knob Chart -->
-<script src="../dist/adminlte/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{% static 'adminlte/plugins/jquery-knob/jquery.knob.min.js' %}"></script>
 <!-- daterangepicker -->
-<script src="../dist/adminlte/plugins/moment/moment.min.js"></script>
-<script src="../dist/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{% static 'adminlte/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static 'adminlte/plugins/daterangepicker/daterangepicker.js' %}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="../dist/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{% static 'adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 <!-- Summernote -->
-<script src="../dist/adminlte/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{% static 'adminlte/plugins/summernote/summernote-bs4.min.js' %}"></script>
 <!-- overlayScrollbars -->
-<script src="../dist/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{% static 'adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
 <!-- AdminLTE App -->
-<script src="../dist/adminlte/dist/js/adminlte.js"></script>
+<script src="{% static 'adminlte/dist/js/adminlte.js' %}"></script>
 
 </body>
 </html>

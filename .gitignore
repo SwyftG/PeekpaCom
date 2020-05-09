@@ -4,6 +4,7 @@
 /__pycache__
 /Peekpa/__pycache__
 /apps/*/__pycache__
+/apps/*/*/__pycache__
 
 /front/node_modules
 
