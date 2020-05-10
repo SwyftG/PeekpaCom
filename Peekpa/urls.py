@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('apps.peekpauser.urls')), #添加的PeekpaUser的url路径
     path('cms/', include('apps.cms.urls')),
-    path('', index, name='index')
+    path('', include('apps.poster.urls'))
 ]
