@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.peekpauser',  # 新添加的PeekpaUser应用
+    'apps.peekpauser',
+    'apps.poster',  # 新添加的Poster应用
 ]
 
 MIDDLEWARE = [
