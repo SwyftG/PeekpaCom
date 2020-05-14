@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from .category_view import CategoryView, CategoryEditView, CategoryDeleteView
+from .tag_view import TagView, TagEditView, TagDeleteView
 
 
 app_name = "cms"
@@ -8,4 +10,15 @@ urlpatterns = [
     path("", views.cms_login, name="index"),
     path("dashboard/", views.cms_dashboard, name="dashboard"),
     path("login/", views.cms_login, name="login"),
+    path("dashboard/category/manage", views.category_manage_view, name="category_manage_view"),
+    path("dashboard/category/publish", views.category_publish_view, name="category_publish_view"),
+    path("dashboard/category/add", CategoryView.as_view(), name="category_add"),
+    path("dashboard/category/edit", CategoryEditView.as_view(), name="category_edit"),
+    path("dashboard/category/delete", CategoryDeleteView.as_view(), name="category_delete"),
+
+    path("dashboard/tag/manage", views.tag_manage_view, name="tag_manage_view"),
+    path("dashboard/tag/publish", views.tag_publish_view, name="tag_publish_view"),
+    path("dashboard/tag/add", TagView.as_view(), name="tag_add"),
+    path("dashboard/tag/edit", TagEditView.as_view(), name="tag_edit"),
+    path("dashboard/tag/delete", TagDeleteView.as_view(), name="tag_delete"),
 ]

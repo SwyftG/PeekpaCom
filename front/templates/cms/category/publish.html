@@ -1,0 +1,52 @@
+{% extends 'cms/base/dashboard_base.html' %}
+
+{% block title %}
+Category Publish
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center pt-4">
+                <div class="col-sm-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                        <h3 class="card-title">Category Publish</h3>
+                        </div>
+                        <!-- form start -->
+                        <form class="form-horizontal" action="{% url 'cms:category_add' %}" method="post">
+                            {% csrf_token %}
+                            {% if item_data %}
+                                <input type="text" class="form-control" id="pk" name="pk" value="{{ item_data.id }}" hidden>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="form-group row mb-0">
+                                    <label for="inputEmail3" class="col-form-label col-sm-2 text-center">Name</label>
+                                    <div class="col-sm-10">
+                                        {% if item_data %}
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ item_data.name }}">
+                                        {% else %}
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                {% if item_data %}
+                                    <button type="submit" class="btn btn-info" name="modify">Submit</button>
+                                    <button type="submit" class="btn btn-danger float-right" name="cancel">Cancel</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-info" name="submit">Submit</button>
+                                    <button type="submit" class="btn btn-danger float-right" name="back">Back</button>
+                                {% endif %}
+                            </div>
+                            <!-- /.card-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
