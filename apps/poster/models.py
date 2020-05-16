@@ -26,7 +26,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=200)
-    author = models.ForeignKey('peekpauser.User', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('peekpauser.User', on_delete=models.CASCADE, null=True)
     description = models.CharField(max_length=200)
     thumbnail = models.URLField()
 
@@ -34,8 +34,13 @@ class Post(models.Model):
     content_html = models.TextField(blank=True, editable=False)
     is_md = models.BooleanField(default=True)
 
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     tag = models.ManyToManyField(Tag)
+
+    priority = models.IntegerField(default=-1)
+    is_hot = models.BooleanField(default=False)
+    is_top = models.BooleanField(default=False)
+    is_main_page = models.BooleanField(default=False)
 
     status = models.PositiveIntegerField(default=STATUS_DRAFT, choices=STATUS_ITEMS)
     publish_time = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from apps.poster.models import Category, Tag
+from apps.poster.models import Category, Tag, Post
+from apps.peekpauser.models import User
+from .forms import PostForm
 
 # Create your views here.
 
@@ -32,3 +34,20 @@ def tag_manage_view(request):
 
 def tag_publish_view(request):
     return render(request, 'cms/tag/publish.html')
+
+
+def post_manage_view(request):
+    context = {
+        "list_data": Post.objects.all()
+    }
+    return render(request, 'cms/post/manage.html', context=context)
+
+
+def post_publish_view(request):
+    context = {
+        'list_data_category': Category.objects.all(),
+        'list_data_tag': Tag.objects.all(),
+        'list_data_user': User.objects.all(),
+        'list_data_status': Post.STATUS_ITEMS
+    }
+    return render(request, 'cms/post/publish.html', context=context)

@@ -1,6 +1,6 @@
 from django import forms
 from apps.base.forms import FormMixin
-from apps.poster.models import Category, Tag
+from apps.poster.models import Category, Tag, Post
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -29,3 +29,19 @@ class TagEditForm(forms.ModelForm, FormMixin):
     class Meta:
         model = Tag
         fields = "__all__"
+
+
+class PostForm(forms.ModelForm, FormMixin):
+    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all())
+
+    class Meta:
+        model = Post
+        exclude = ('tag',)
+
+
+class PostEditForm(forms.ModelForm, FormMixin):
+    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all())
+    id = forms.CharField(max_length=100)
+    class Meta:
+        model = Post
+        exclude = ('tag',)

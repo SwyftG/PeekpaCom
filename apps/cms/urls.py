@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from .category_view import CategoryView, CategoryEditView, CategoryDeleteView
 from .tag_view import TagView, TagEditView, TagDeleteView
+from .post_view import PostView, PostEditView, PostDeleteView
 
 
 app_name = "cms"
@@ -21,4 +22,10 @@ urlpatterns = [
     path("dashboard/tag/add", TagView.as_view(), name="tag_add"),
     path("dashboard/tag/edit", TagEditView.as_view(), name="tag_edit"),
     path("dashboard/tag/delete", TagDeleteView.as_view(), name="tag_delete"),
+
+    path("dashboard/post/manage", views.post_manage_view, name="post_manage_view"),
+    path("dashboard/post/publish", views.post_publish_view, name="post_publish_view"),
+    path("dashboard/post/add", PostView.as_view(), name="post_add"),
+    path("dashboard/post/edit", PostEditView.as_view(), name="post_edit"),
+    path("dashboard/post/delete", PostDeleteView.as_view(), name="post_delete"),
 ]
