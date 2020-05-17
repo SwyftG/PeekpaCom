@@ -1,3 +1,5 @@
+{% load post_filters %}
+
 <!-- 右侧 -->
 <div class="col-md-4">
 
@@ -13,81 +15,40 @@
         </div>
     </div>
 
-    <!-- 文章板块 -->
-    <div class="row ml-1 mt-4" style="background-color: white">
-        <div class="col-sm-12 mt-4">
-            <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">『皮爷撸码』阅读排行榜</p>
+    {% if read_post %}
+        <!-- 文章板块 -->
+        <div class="row ml-1 mt-4" style="background-color: white">
+            <div class="col-sm-12 mt-4">
+                <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">『皮爷撸码』阅读排行榜</p>
+            </div>
         </div>
-    </div>
-    <!-- 文章列表 -->
-    <div class="row ml-1" style="background-color: white">
-        <ul class="col-sm-12 d-block">
-            <!-- 列表内容一 -->
-            <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
-                <div class="col-sm-5 pl-0 h-100">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                    </a>
-                </div>
-                <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
-                    <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                    </p>
-                    <div class="d-flex flex-row justify-content-between mt-auto">
-                        <p class="font-weight-light small mb-0">阅读(1024)</p>
-                        <p class="font-weight-light small mb-0">2019-12-02</p>
-                    </div>
-                </div>
-            </li>
-            <!-- 列表内容二 -->
-            <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
-                <div class="col-sm-5 pl-0 h-100">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                    </a>
-                </div>
-                <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
-                    <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                    </p>
-                    <div class="d-flex flex-row justify-content-between mt-auto">
-                        <p class="font-weight-light small mb-0">阅读(1024)</p>
-                        <p class="font-weight-light small mb-0">2019-12-02</p>
-                    </div>
-                </div>
-            </li>
-            <!-- 列表内容三 -->
-            <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
-                <div class="col-sm-5 pl-0 h-100">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                    </a>
-                </div>
-                <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
-                    <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                    </p>
-                    <div class="d-flex flex-row justify-content-between mt-auto">
-                        <p class="font-weight-light small mb-0">阅读(1024)</p>
-                        <p class="font-weight-light small mb-0">2019-12-02</p>
-                    </div>
-                </div>
-            </li>
-            <!-- 列表内容四 -->
-            <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
-                <div class="col-sm-5 pl-0 h-100">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                    </a>
-                </div>
-                <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
-                    <p class="h6" style="font-size: .9rem"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                    </p>
-                    <div class="d-flex flex-row justify-content-between mt-auto">
-                        <p class="font-weight-light small mb-0">阅读(1024)</p>
-                        <p class="font-weight-light small mb-0">2019-12-02</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+        <!-- 文章列表 -->
+        <div class="row ml-1" style="background-color: white">
+            <ul class="col-sm-12 d-block">
+                {% for post in read_post %}
+                    <!-- 列表内容 -->
+                    <li class="row mt-2 mb-2 pb-2 ml-0 pl-1 mr-0 pr-1 border-bottom " style="height: 100px;">
+                        <div class="col-sm-5 pl-0 h-100">
+                            <a href="{% url 'post:detail' time_id=post.time_id %}" class="w-100 h-100">
+                                <img src="{{ post.thumbnail }}" class="w-100 h-100">
+                            </a>
+                        </div>
+                        <div class="col-sm-7 d-flex flex-column pl-0 pr-0 mt-1">
+                            <p class="h6" style="font-size: .9rem"><a
+                                    href="{% url 'post:detail' time_id=post.time_id %}"
+                                    class="text-decoration-none text-dark">{{ post.title }}</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-auto">
+                                <p class="font-weight-light small mb-0">阅读({{ post.read_num }})</p>
+                                <p class="font-weight-light small mb-0">{{ post.publish_time_show | datapicker_format }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    {% endif %}
 
     <!-- 友链板块 -->
     <div class="row ml-1 mt-4" style="background-color: white">
