@@ -99,5 +99,5 @@ class PostEditView(View):
 class PostDeleteView(View):
     def post(self, request):
         post_id = request.POST.get('post_id')
-        Post.objects.filter(id=post_id).delete()
+        Post.objects.filter(id=post_id).update(status=Post.STATUS_DELETE)
         return restful.ok()

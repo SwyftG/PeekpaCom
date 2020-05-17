@@ -1,7 +1,11 @@
 {% extends 'cms/base/dashboard_base.html' %}
 
 {% block title %}
-Tag Publish
+    {% if item_data %}
+        Tag Edit
+    {% else %}
+        Tag Publish
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -11,7 +15,11 @@ Tag Publish
                 <div class="col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
-                        <h3 class="card-title">Tag Publish</h3>
+                            {% if item_data %}
+                                <h3 class="card-title">Tag Edit</h3>
+                            {% else %}
+                                <h3 class="card-title">Tag Publish</h3>
+                            {% endif %}
                         </div>
                         <!-- form start -->
                         <form class="form-horizontal" action="{% url 'cms:tag_add' %}" method="post">

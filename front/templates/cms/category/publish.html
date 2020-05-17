@@ -1,7 +1,11 @@
 {% extends 'cms/base/dashboard_base.html' %}
 
 {% block title %}
-Category Publish
+    {% if item_data %}
+        Category Edit
+    {% else %}
+        Category Publish
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -11,7 +15,11 @@ Category Publish
                 <div class="col-sm-6">
                     <div class="card card-primary">
                         <div class="card-header">
-                        <h3 class="card-title">Category Publish</h3>
+                            {% if item_data %}
+                                <h3 class="card-title">Category Edit</h3>
+                            {% else %}
+                                <h3 class="card-title">Category Publish</h3>
+                            {% endif %}
                         </div>
                         <!-- form start -->
                         <form class="form-horizontal" action="{% url 'cms:category_add' %}" method="post">

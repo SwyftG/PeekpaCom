@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block title %}
-Post Publish
+    {% if item_data %}
+        Post Edit
+    {% else %}
+        Post Publish
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -16,7 +20,11 @@ Post Publish
                 <div class="col-sm-11">
                     <div class="card card-primary">
                         <div class="card-header">
-                        <h3 class="card-title">Post Publish</h3>
+                            {% if item_data %}
+                                <h3 class="card-title">Post Edit</h3>
+                            {% else %}
+                                <h3 class="card-title">Post Publish</h3>
+                            {% endif %}
                         </div>
                         <!-- form start -->
                         <form class="form-horizontal" action="{% url 'cms:post_add' %}" method="post">
