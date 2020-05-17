@@ -5,7 +5,7 @@ app_name = "post"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("detail/", views.detail, name="detail"),
+    path("detail/<int:time_id>/", views.detail, name="detail"),
     # path("logout/", views.login_view, name="logout"),
     # path("img_captcha/", views.img_captcha, name="img_captcha"),
     # path("sms_captcha/", views.sms_captcha, name="sms_captcha"),

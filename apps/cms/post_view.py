@@ -4,6 +4,7 @@ from apps.poster.models import Post, Category, Tag
 from apps.peekpauser.models import User
 from django.shortcuts import render, redirect, reverse
 from utils import restful
+import mistune
 
 
 class PostView(View):
@@ -32,8 +33,7 @@ class PostView(View):
                                     thumbnail=thumbnail, status=status, content=content,
                                     is_md=is_md, category=category, priority=priority,
                                     is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
-                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num
-                                    )
+                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num)
                 instance.tag.set(tags)
                 return redirect(reverse("cms:post_publish_view"))
             else:
@@ -60,12 +60,14 @@ class PostView(View):
                 read_num = form.cleaned_data.get('read_num')
                 tags = form.cleaned_data.get('tag_id')
                 instance = Post.objects.filter(id=id)
+                if is_md:
+                    content_html = mistune.markdown(content)
                 instance.update(title=title, description=description, author=author,
                                     thumbnail=thumbnail, status=status, content=content,
                                     is_md=is_md, category=category, priority=priority,
                                     is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
-                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num
-                                    )
+                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num,
+                                    content_html=content_html)
                 instance.first().tag.set(tags)
                 return redirect(reverse("cms:post_manage_view"))
             else:
