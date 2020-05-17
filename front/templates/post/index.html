@@ -1,4 +1,5 @@
 {% extends 'base/index_base.html' %}
+{% load post_filters %}
 
 {% block title %}
 Peekpa
@@ -12,166 +13,102 @@ Peekpa
 <div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-md-8">
-            <!-- 大焦点图 -->
-            <div class="row" style="height: 230px;background-color: white">
-                <div class="col-md-7 p-0">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x260" class="w-100 h-100">
-                    </a>
-                </div>
+            {% if top_post %}
+                {% if top_post.0 %}
+                    <!-- 大焦点图 -->
+                    <div class="row" style="height: 230px;background-color: white">
+                        <div class="col-md-7 p-0 h-100">
+                            <a href="{% url 'post:detail' time_id=top_post.0.time_id%}" class="w-100 h-100">
+                                <img src="{{ top_post.0.thumbnail }}" class="w-100 h-100">
+                            </a>
+                        </div>
 
-                <div class="col-md-5">
-                    <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#" class="text-decoration-none text-dark" style="">如何让Python爬虫一天抓取100万张网页</a>
-                    </p>
-                    <div class="d-flex flex-row justify-content-between mt-2">
-                        <p class="font-weight-light small pl-1 ">皮爷撸码</p>
-                        <p class="font-weight-light small pr-1">2019-12-02</p>
+                        <div class="col-md-5">
+                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="{% url 'post:detail' time_id=top_post.0.time_id%}" class="text-decoration-none text-dark" style="">{{ top_post.0.title }}</a>
+                            </p>
+                            <div class="d-flex flex-row justify-content-between mt-2">
+                                <p class="font-weight-light small pl-1 ">{{ top_post.0.author.username }}</p>
+                                <p class="font-weight-light small pr-1">{{ top_post.0.publish_time_show | datapicker_format }}</p>
+                            </div>
+                            <p class="small" style="font-size: 95%;">{{ top_post.0.description }}</p>
+                        </div>
                     </div>
-                    <p class="small" style="font-size: 95%;">
-                        前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
+                {% endif %}
 
-                </div>
-            </div>
-            <!-- 三小图 -->
-            <div class="row mt-2 justify-content-between" style="height: 130px;">
-                <!-- 三小图(左) -->
-                <div class="col-sm-4 pl-0 pr-1 position-relative">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                        <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
-                            <p class="small m-1 text-light">
-                                如何让Python爬虫一天抓取100万张网页
-                            </p>
+                <!-- 三小图 -->
+                <div class="row mt-2 justify-content-between" style="height: 130px;">
+                    {% if top_post.1 %}
+                        <!-- 三小图(左) -->
+                        <div class="col-sm-4 pl-0 pr-1 position-relative h-100">
+                            <a href="{% url 'post:detail' time_id=top_post.1.time_id%}" class="w-100 h-100">
+                                <img src="{{ top_post.1.thumbnail }}" class="w-100 h-100">
+                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                    <p class="small m-1 text-light">
+                                        {{ top_post.1.title }}
+                                    </p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <!-- 三小图(中) -->
-                <div class="col-sm-4 pl-1 pr-1 position-relative">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                        <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
-                            <p class="small m-1 text-light">
-                                利用爬虫挣钱系列2-细说数据整合
-                            </p>
+                    {% endif %}
+                    {% if top_post.2 %}
+                        <!-- 三小图(中) -->
+                        <div class="col-sm-4 pl-1 pr-1 position-relative h-100">
+                            <a href="{% url 'post:detail' time_id=top_post.2.time_id%}" class="w-100 h-100">
+                                <img src="{{ top_post.2.thumbnail }}" class="w-100 h-100">
+                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                    <p class="small m-1 text-light">
+                                        {{ top_post.2.title }}
+                                    </p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <!-- 三小图(右) -->
-                <div class="col-sm-4 pl-1 pr-0 position-relative">
-                    <a href="#" class="w-100 h-100">
-                        <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                        <div class="position-absolute" style="bottom:0;background-color: rgba(58,58,58,0.5)">
-                            <p class="small m-1 text-light">
-                                分享我曾经的学习和找工作经历
-                            </p>
+                    {% endif %}
+                    {% if top_post.3 %}
+                        <!-- 三小图(右) -->
+                        <div class="col-sm-4 pl-1 pr-0 position-relative h-100">
+                            <a href="{% url 'post:detail' time_id=top_post.3.time_id%}" class="w-100 h-100">
+                                <img src="{{ top_post.3.thumbnail }}" class="w-100 h-100">
+                                <div class="position-absolute" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                    <p class="small m-1 text-light">
+                                        {{ top_post.3.title }}
+                                    </p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    {% endif %}
                 </div>
-            </div>
+            {% endif %}
 
             <!-- 左侧文章列表 -->
             <div class="row mt-3">
                 <ul class="col-sm-12 d-block">
-
-                    <!-- 文章 一 -->
-                    <li class="row mb-3" style="height: 180px;background-color: white">
-                        <div class="col-sm-4 p-3 h-100">
-                            <a href="#" class="w-100 h-100">
-                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                                <div class="position-absolute mt-3"
-                                     style="top:0;background-color: rgba(32,120,255,0.5)">
-                                    <p class="small m-1 text-light">Python爬虫开发</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-8 d-flex flex-column">
-                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
-                                                                          class="text-decoration-none text-dark">Python
-                                的控制流代码混淆</a>
-                            </p>
-                            <p class="small mt-2" style="font-size: 95%;">聊下 Python 的代码混淆，对 Python
-                                的代码做混淆感觉是不伦不类，但是对于外包项目交付型的，又有一些需要。混淆的目的就是加大别...</p>
-                            <div class="d-flex flex-row justify-content-between mt-auto">
-                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
-                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
-                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
+                    {% for post in list_post %}
+                        <!-- 文章 -->
+                        <li class="row mb-3" style="height: 180px;background-color: white">
+                            <div class="col-sm-4 p-3 h-100">
+                                <a href="{% url 'post:detail' time_id=post.time_id %}" class="w-100 h-100">
+                                    <img src="{{ post.thumbnail }}" class="w-100 h-100">
+                                    <div class="position-absolute mt-3"
+                                         style="top:0;background-color: rgba(32,120,255,0.5)">
+                                        <p class="small m-1 text-light">{{ post.category.name }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                    </li>
-
-                    <!-- 文章 二 -->
-                    <li class="row mb-3" style="height: 180px;background-color: white">
-                        <div class="col-sm-4 p-3 h-100">
-                            <a href="#" class="w-100 h-100">
-                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                                <div class="position-absolute mt-3"
-                                     style="top:0;background-color: rgba(32,120,255,0.5)">
-                                    <p class="small m-1 text-light">Python爬虫开发</p>
+                            <div class="col-sm-8 d-flex flex-column">
+                                <p class="h5 mt-3 border-bottom mb-0 pb-2">
+                                    <a href="{% url 'post:detail' time_id=post.time_id %}" class="text-decoration-none text-dark">{{ post.title }}
+                                    </a>
+                                </p>
+                                <p class="small mt-2" style="font-size: 95%;">{{ post.description }}</p>
+                                <div class="d-flex flex-row justify-content-between mt-auto">
+                                    <p class="font-weight-light small pl-1 mb-3">{{ post.author.username }}</p>
+                                    <p class="font-weight-light small pr-1 mb-3">阅读({{ post.read_num }})</p>
+                                    <p class="font-weight-light small pr-1 mb-3">{{ post.publish_time_show | time_since }}</p>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-8 d-flex flex-column">
-                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
-                                                                          class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                            </p>
-                            <p class="small mt-2" style="font-size: 95%;">
-                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
-                            <div class="d-flex flex-row justify-content-between mt-auto">
-                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
-                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
-                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
 
-                    <!-- 文章 三 -->
-                    <li class="row mb-3" style="height: 180px;background-color: white">
-                        <div class="col-sm-4 p-3 h-100">
-                            <a href="#" class="w-100 h-100">
-                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                                <div class="position-absolute mt-3"
-                                     style="top:0;background-color: rgba(32,120,255,0.5)">
-                                    <p class="small m-1 text-light">Python爬虫开发</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-8 d-flex flex-column">
-                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#" class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                            </p>
-                            <p class="small mt-2" style="font-size: 95%;">
-                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
-                            <div class="d-flex flex-row justify-content-between mt-auto">
-                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
-                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
-                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- 文章 四 -->
-                    <li class="row mb-3" style="height: 180px;background-color: white">
-                        <div class="col-sm-4 p-3 h-100">
-                            <a href="#" class="w-100 h-100">
-                                <img src="https://via.placeholder.com/806x160" class="w-100 h-100">
-                                <div class="position-absolute mt-3"
-                                     style="top:0;background-color: rgba(32,120,255,0.5)">
-                                    <p class="small m-1 text-light">Python爬虫开发</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-8 d-flex flex-column">
-                            <p class="h5 mt-3 border-bottom mb-0 pb-2"><a href="#"
-                                                                          class="text-decoration-none text-dark">如何让Python爬虫一天抓取100万张网页</a>
-                            </p>
-                            <p class="small mt-2" style="font-size: 95%;">
-                                前一两年抓过某工商信息网站，几三周时间大约抓了过千万多万张页面。那时由于公司没啥经费，报销又拖得很久，不想花钱在很多机器和...</p>
-                            <div class="d-flex flex-row justify-content-between mt-auto">
-                                <p class="font-weight-light small pl-1 mb-3">皮爷撸码</p>
-                                <p class="font-weight-light small pr-1 mb-3">阅读(1024)</p>
-                                <p class="font-weight-light small pr-1 mb-3">2019-12-02</p>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
 

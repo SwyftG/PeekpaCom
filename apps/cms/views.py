@@ -44,7 +44,7 @@ def post_manage_view(request):
     paginator = Paginator(posts, settings.ONE_PAGE_NEWS_COUNT)
     page_obj = paginator.page(page)
     context = {
-        "list_data": posts,
+        "list_data": page_obj.object_list,
         'list_data_status': Post.STATUS_ITEMS
     }
     context_data = get_pagination_data(paginator, page_obj)

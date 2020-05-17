@@ -29,8 +29,9 @@
                                     <tr>
                                         <th style="width: 10%;">#</th>
                                         <th>Post_Title</th>
-                                        <th style="width: 20%;">Post_Category</th>
-                                        <th style="width: 15%;">Post_Show_Time</th>
+                                        <th style="width: 15%;">Post_Category</th>
+                                        <th style="width: 10%;">Post_Show_Time</th>
+                                        <th style="width: 10%;">Post_Priority</th>
                                         <th style="width: 10%;">Post_Status</th>
                                         <th style="width: 15%;">actions</th>
                                     </tr>
@@ -43,6 +44,7 @@
                                                    class="">{{ item.title }}</a></td>
                                             <td>{{ item.category.name }}</td>
                                             <td>{{ item.publish_time_show | datapicker_format }}</td>
+                                            <td>{{ item.priority }}</td>
                                             <td>
                                                 {% for list_item in list_data_status %}
                                                     {% if item.status == list_item.0 %}

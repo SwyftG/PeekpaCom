@@ -58,5 +58,5 @@ class Post(models.Model):
         else:
             self.content_html = self.content
         if self.time_id is None or len(self.time_id) == 0:
-            self.time_id = self.publish_time.strftime("%Y%m%d%H%M")
+            self.time_id = self.publish_time_show.strftime("%Y%m%d%H%M")
         super().save(*args, **kwargs)
