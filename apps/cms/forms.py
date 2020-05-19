@@ -1,6 +1,7 @@
 from django import forms
 from apps.base.forms import FormMixin
 from apps.poster.models import Category, Tag, Post
+from apps.exchangelink.models import ExchangeLink
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -45,3 +46,17 @@ class PostEditForm(forms.ModelForm, FormMixin):
     class Meta:
         model = Post
         exclude = ('tag',)
+
+
+class ExchangeLinkForm(forms.ModelForm, FormMixin):
+    class Meta:
+        model = ExchangeLink
+        fields = "__all__"
+
+
+class ExchangeLinkEditForm(forms.ModelForm, FormMixin):
+    pk = forms.CharField(max_length=100)
+
+    class Meta:
+        model = ExchangeLink
+        fields = "__all__"

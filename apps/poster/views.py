@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apps.poster.models import Post
+from apps.exchangelink.models import ExchangeLink
 # Create your views here.
 
 
@@ -11,6 +12,7 @@ def index(request):
         'list_post': list_post
     }
     context.update(get_read_most_post())
+    context.update(get_exchange_link())
     return render(request, 'post/index.html', context=context)
 
 
@@ -20,6 +22,7 @@ def detail(request, time_id):
         'post_data': post,
     }
     context.update(get_read_most_post())
+    context.update(get_exchange_link())
     return render(request, 'post/detail.html', context=context)
 
 
@@ -29,5 +32,13 @@ def get_read_most_post():
         read_post = read_post[:5]
     context = {
         'read_post': read_post
+    }
+    return context
+
+
+def get_exchange_link():
+    exchange_link = ExchangeLink.objects.filter(status=ExchangeLink.STATUS_NORMAL)
+    context = {
+        'exchange_link': exchange_link
     }
     return context

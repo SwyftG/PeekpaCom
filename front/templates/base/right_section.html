@@ -60,59 +60,15 @@
     <!-- 友链数据 -->
     <div class="row ml-1" style="background-color: white">
         <ul class="list-unstyled row col-sm-12 pl-1 ml-0 ">
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 1
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 2
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 3
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 4
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 5
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 66
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 7
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 8
-                </a>
-            </li>
-
-            <li class=" col-sm-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    Address 9
-                </a>
-            </li>
+            {% if exchange_link %}
+                {% for link_item in exchange_link %}
+                    <li class=" col-sm-6">
+                        <a href="{{ link_item.url }}" class="text-decoration-none text-dark">
+                            {{ link_item.show_name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </div>
 

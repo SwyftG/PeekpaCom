@@ -1,0 +1,71 @@
+{% extends 'cms/base/dashboard_base.html' %}
+{% load post_filters %}
+
+{% block head %}
+    <script src="{% static 'js/exchangelink_manage.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    ExchangeLink Management
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <div class="container-fluid pt-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row p-2 d-flex justify-content-between">
+                                <p class="h3">ExchangeLink</p>
+                                <div class="float-right">
+                                    <a class="btn btn-primary text-right" href="{% url 'cms:exchangelink_publish_view' %}"><i class="mr-2 fas fa-plus"></i>Add</a>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th style="width: 10%;">#</th>
+                                        <th>name</th>
+                                        <th>show_name</th>
+                                        <th>status</th>
+                                        <th>url</th>
+                                        <th>create_time</th>
+                                        <th class="w-25">actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in list_data %}
+                                        <tr>
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.show_name }}</td>
+                                            <td>
+                                                {% for list_item in list_data_status %}
+                                                    {% if item.status == list_item.0 %}
+                                                        {{ list_item.1 }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            <td><a href="{{ item.url }}">{{ item.url }}</a></td>
+                                            <td>{{ item.create_time | datapicker_format }}</td>
+                                            <td>
+                                                <a href="{% url 'cms:exchangelink_edit' %}?exchangelink_id={{ item.id }}" class="btn btn-info btn-xs">Modify</a>
+                                                <button class="btn btn-danger btn-xs delete-btn" data-exchangelink-id="{{ item.id}}">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

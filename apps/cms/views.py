@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apps.poster.models import Category, Tag, Post
+from apps.exchangelink.models import ExchangeLink
 from apps.peekpauser.models import User
 from django.core.paginator import Paginator
 from django.conf import settings
@@ -91,3 +92,18 @@ def get_pagination_data(paginator, page_obj, around_count=2):
         'right_has_more': right_has_more,
         'num_pages': num_pages
     }
+
+
+def exchangelink_manage_view(request):
+    context = {
+        "list_data": ExchangeLink.objects.all(),
+        'list_data_status': ExchangeLink.STATUS_ITEMS
+    }
+    return render(request, 'cms/exchangelink/manage.html', context=context)
+
+
+def exchangelink_publish_view(request):
+    context = {
+        'list_data_status': ExchangeLink.STATUS_ITEMS
+    }
+    return render(request, 'cms/exchangelink/publish.html', context=context)

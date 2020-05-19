@@ -3,6 +3,7 @@ from . import views
 from .category_view import CategoryView, CategoryEditView, CategoryDeleteView
 from .tag_view import TagView, TagEditView, TagDeleteView
 from .post_view import PostView, PostEditView, PostDeleteView
+from .exchangelink_view import ExchangeLinkView, ExchangeLinkEditView, ExchangeLinkDeleteView
 
 
 app_name = "cms"
@@ -28,4 +29,10 @@ urlpatterns = [
     path("dashboard/post/add", PostView.as_view(), name="post_add"),
     path("dashboard/post/edit", PostEditView.as_view(), name="post_edit"),
     path("dashboard/post/delete", PostDeleteView.as_view(), name="post_delete"),
+
+    path("dashboard/exchangelink/manage", views.exchangelink_manage_view, name="exchangelink_manage_view"),
+    path("dashboard/exchangelink/publish", views.exchangelink_publish_view, name="exchangelink_publish_view"),
+    path("dashboard/exchangelink/add", ExchangeLinkView.as_view(), name="exchangelink_add"),
+    path("dashboard/exchangelink/edit", ExchangeLinkEditView.as_view(), name="exchangelink_edit"),
+    path("dashboard/exchangelink/delete", ExchangeLinkDeleteView.as_view(), name="exchangelink_delete"),
 ]
