@@ -49,18 +49,17 @@
             </ul>
         </div>
     {% endif %}
-
-    <!-- 友链板块 -->
-    <div class="row ml-1 mt-4" style="background-color: white">
-        <div class="col-sm-12 mt-4">
-            <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">友情链接</p>
+    {% if exchange_link %}
+        <!-- 友链板块 -->
+        <div class="row ml-1 mt-4" style="background-color: white">
+            <div class="col-sm-12 mt-4">
+                <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">友情链接</p>
+            </div>
         </div>
-    </div>
 
-    <!-- 友链数据 -->
-    <div class="row ml-1" style="background-color: white">
-        <ul class="list-unstyled row col-sm-12 pl-1 ml-0 ">
-            {% if exchange_link %}
+        <!-- 友链数据 -->
+        <div class="row ml-1" style="background-color: white">
+            <ul class="list-unstyled row col-sm-12 pl-1 ml-0 ">
                 {% for link_item in exchange_link %}
                     <li class=" col-sm-6">
                         <a href="{{ link_item.url }}" class="text-decoration-none text-dark">
@@ -68,8 +67,8 @@
                         </a>
                     </li>
                 {% endfor %}
-            {% endif %}
-        </ul>
-    </div>
+            </ul>
+        </div>
+    {% endif %}
 
 </div>

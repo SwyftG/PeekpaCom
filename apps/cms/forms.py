@@ -2,6 +2,7 @@ from django import forms
 from apps.base.forms import FormMixin
 from apps.poster.models import Category, Tag, Post
 from apps.exchangelink.models import ExchangeLink
+from apps.basefunction.models import NavbarItem
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -59,4 +60,18 @@ class ExchangeLinkEditForm(forms.ModelForm, FormMixin):
 
     class Meta:
         model = ExchangeLink
+        fields = "__all__"
+
+
+class NavItemForm(forms.ModelForm, FormMixin):
+    class Meta:
+        model = NavbarItem
+        fields = "__all__"
+
+
+class NavItemEditForm(forms.ModelForm, FormMixin):
+    pk = forms.CharField(max_length=100)
+
+    class Meta:
+        model = NavbarItem
         fields = "__all__"

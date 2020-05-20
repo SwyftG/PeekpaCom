@@ -37,14 +37,14 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="{{ post_manage_view }}" class="nav-link {% if request.path == post_manage_view %}active{% endif %}">
-                          <i class="nav-icon fas fa-list"></i>
-                          <p>Post Management</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="{{ post_publish_view }}" class="nav-link {% if request.path == post_publish_view %}active{% endif %}">
-                          <i class="nav-icon far fa-plus-square"></i>
-                          <p>Post Publish</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
                         </a>
                       </li>
                     </ul>
@@ -62,14 +62,14 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="{{ category_manage_view }}" class="nav-link {% if request.path == category_manage_view %}active{% endif %}">
-                          <i class="nav-icon fas fa-list"></i>
-                          <p>Category Management</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="{{ category_publish_view }}" class="nav-link {% if request.path == category_publish_view %}active{% endif %}">
-                          <i class="nav-icon far fa-plus-square"></i>
-                          <p>Category Publish</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
                         </a>
                       </li>
                     </ul>
@@ -87,14 +87,14 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="{% url 'cms:tag_manage_view' %}" class="nav-link {% if request.path == tag_manage_view %}active{% endif %}">
-                          <i class="nav-icon fas fa-list"></i>
-                          <p>Tag Management</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="{% url 'cms:tag_publish_view' %}" class="nav-link {% if request.path == tag_publish_view %}active{% endif %}">
-                          <i class="nav-icon far fa-plus-square"></i>
-                          <p>Tag Publish</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
                         </a>
                       </li>
                     </ul>
@@ -112,14 +112,39 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="{% url 'cms:exchangelink_manage_view' %}" class="nav-link {% if request.path == exchangelink_manage_view %}active{% endif %}">
-                          <i class="nav-icon fas fa-list"></i>
-                          <p>ExchangeLink Management</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
                         </a>
                       </li>
                       <li class="nav-item">
                         <a href="{% url 'cms:exchangelink_publish_view' %}" class="nav-link {% if request.path == exchangelink_publish_view %}active{% endif %}">
-                          <i class="nav-icon far fa-plus-square"></i>
-                          <p>ExchangeLink Publish</p>
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
+                        </a>
+                      </li>
+                    </ul>
+                </li>
+                {% url 'cms:navitem_manage_view' as navitem_manage_view %}
+                {% url 'cms:navitem_publish_view' as navitem_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == navitem_manage_view or request.path == navitem_publish_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == navitem_manage_view or request.path == navitem_publish_view %}active{% endif %}">
+                      <i class="nav-icon far fa-compass"></i>
+                      <p>
+                        Navbar Item
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{% url 'cms:navitem_manage_view' %}" class="nav-link {% if request.path == navitem_manage_view %}active{% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cms:navitem_publish_view' %}" class="nav-link {% if request.path == navitem_publish_view %}active{% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
                         </a>
                       </li>
                     </ul>

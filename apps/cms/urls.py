@@ -4,6 +4,7 @@ from .category_view import CategoryView, CategoryEditView, CategoryDeleteView
 from .tag_view import TagView, TagEditView, TagDeleteView
 from .post_view import PostView, PostEditView, PostDeleteView
 from .exchangelink_view import ExchangeLinkView, ExchangeLinkEditView, ExchangeLinkDeleteView
+from .navitem_view import NavItemView, NavItemEditView, NavItemDeleteView
 
 
 app_name = "cms"
@@ -35,4 +36,10 @@ urlpatterns = [
     path("dashboard/exchangelink/add", ExchangeLinkView.as_view(), name="exchangelink_add"),
     path("dashboard/exchangelink/edit", ExchangeLinkEditView.as_view(), name="exchangelink_edit"),
     path("dashboard/exchangelink/delete", ExchangeLinkDeleteView.as_view(), name="exchangelink_delete"),
+
+    path("dashboard/navitem/manage", views.navitem_manage_view, name="navitem_manage_view"),
+    path("dashboard/navitem/publish", views.navitem_publish_view, name="navitem_publish_view"),
+    path("dashboard/navitem/add", NavItemView.as_view(), name="navitem_add"),
+    path("dashboard/navitem/edit", NavItemEditView.as_view(), name="navitem_edit"),
+    path("dashboard/navitem/delete", NavItemDeleteView.as_view(), name="navitem_delete"),
 ]

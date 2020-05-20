@@ -2,18 +2,21 @@
     <div class="collapse navbar-collapse pl-4 ml-4">
         <a class="navbar-brand mr-4 " href="/"><p class="h2 mb-0"><b>Peekpa</b></p></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            {% url 'base:index' as index %}
+            {% url 'post:post_list' as post_list %}
             <li class="nav-item mr-4">
-                <a class="nav-link" href="{% url 'post:index' %}">首页</a>
+                <a class="nav-link {% if request.path == index %}active{% endif %}" href="{{ index }}">首页</a>
             </li>
             <li class="nav-item mr-4">
-                <a class="nav-link active" href="{% url 'post:post_list' %}">文章</a>
+                <a class="nav-link {% if request.path == post_list %}active{% endif %}" href="{{ post_list }}">文章</a>
             </li>
-            <li class="nav-item mr-4">
-                <a class="nav-link" href="#">论坛</a>
-            </li>
-            <li class="nav-item mr-4">
-                <a class="nav-link" href="#">更多精选</a>
-            </li>
+            {% if navitem_list %}
+                {% for navitem in navitem_list %}
+                    <li class="nav-item mr-4">
+                        <a class="nav-link {% if request.path == navitem.url_path %}active{% endif %}" href="{{ navitem.url_path }}">{{ navitem.show_name }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
         </ul>
     </div>
 </header>

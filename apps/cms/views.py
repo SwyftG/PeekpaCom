@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from apps.poster.models import Category, Tag, Post
 from apps.exchangelink.models import ExchangeLink
+from apps.basefunction.models import NavbarItem
 from apps.peekpauser.models import User
 from django.core.paginator import Paginator
 from django.conf import settings
@@ -109,3 +110,20 @@ def exchangelink_publish_view(request):
         'list_data_status': ExchangeLink.STATUS_ITEMS
     }
     return render(request, 'cms/exchangelink/publish.html', context=context)
+
+
+def navitem_manage_view(request):
+    context = {
+        "list_data": NavbarItem.objects.all(),
+        'list_data_status': NavbarItem.STATUS_ITEMS,
+        'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
+    }
+    return render(request, 'cms/navitem/manage.html', context=context)
+
+
+def navitem_publish_view(request):
+    context = {
+        'list_data_status': NavbarItem.STATUS_ITEMS,
+        'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
+    }
+    return render(request, 'cms/navitem/publish.html', context=context)

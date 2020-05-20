@@ -16,7 +16,6 @@ class ExchangeLinkView(View):
                 url = form.cleaned_data.get('url')
                 status = form.cleaned_data.get('status')
                 ExchangeLink.objects.create(name=name, show_name=show_name, url=url, status=status)
-                print("hehe")
                 return redirect(reverse("cms:exchangelink_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
