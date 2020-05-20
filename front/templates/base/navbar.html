@@ -3,10 +3,10 @@
         <a class="navbar-brand mr-4 " href="/"><p class="h2 mb-0"><b>Peekpa</b></p></a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item mr-4">
-                <a class="nav-link" href="#">首页</a>
+                <a class="nav-link" href="{% url 'post:index' %}">首页</a>
             </li>
             <li class="nav-item mr-4">
-                <a class="nav-link active" href="#">文章</a>
+                <a class="nav-link active" href="{% url 'post:post_list' %}">文章</a>
             </li>
             <li class="nav-item mr-4">
                 <a class="nav-link" href="#">论坛</a>

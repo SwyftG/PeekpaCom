@@ -16,81 +16,113 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item active">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Home
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">POST</li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:post_manage_view' %}" class="nav-link">
-                        <i class="nav-icon fas fa-list"></i>
-                        <p>
-                            Post Management
-                        </p>
+                {% url 'cms:post_manage_view' as post_manage_view %}
+                {% url 'cms:post_publish_view' as post_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == post_manage_view or request.path == post_publish_view %}menu-open{% endif %}">
+                    <a href="{{ post_manage_view }}" class="nav-link {% if request.path == post_manage_view or request.path == post_publish_view %}active{% endif %}">
+                      <i class="nav-icon far fa-copy"></i>
+                      <p>
+                        Post
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ post_manage_view }}" class="nav-link {% if request.path == post_manage_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-list"></i>
+                          <p>Post Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ post_publish_view }}" class="nav-link {% if request.path == post_publish_view %}active{% endif %}">
+                          <i class="nav-icon far fa-plus-square"></i>
+                          <p>Post Publish</p>
+                        </a>
+                      </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:post_publish_view' %}" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            Post Publish
-                        </p>
+                {% url 'cms:category_manage_view' as category_manage_view %}
+                {% url 'cms:category_publish_view' as category_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == category_manage_view or request.path == category_publish_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == category_manage_view or request.path == category_publish_view %}active{% endif %}">
+                      <i class="nav-icon far fa-bookmark"></i>
+                      <p>
+                        Category
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ category_manage_view }}" class="nav-link {% if request.path == category_manage_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-list"></i>
+                          <p>Category Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ category_publish_view }}" class="nav-link {% if request.path == category_publish_view %}active{% endif %}">
+                          <i class="nav-icon far fa-plus-square"></i>
+                          <p>Category Publish</p>
+                        </a>
+                      </li>
+                    </ul>
                 </li>
-                <li class="nav-header">CATEGORY</li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:category_manage_view' %}" class="nav-link">
-                        <i class="nav-icon fas fa-list"></i>
-                        <p>
-                            Category Management
-                        </p>
+                {% url 'cms:tag_manage_view' as tag_manage_view %}
+                {% url 'cms:tag_publish_view' as tag_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == tag_manage_view or request.path == tag_publish_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == tag_manage_view or request.path == tag_publish_view %}active{% endif %}">
+                      <i class="nav-icon fas fa-tags"></i>
+                      <p>
+                        Tag
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{% url 'cms:tag_manage_view' %}" class="nav-link {% if request.path == tag_manage_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-list"></i>
+                          <p>Tag Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cms:tag_publish_view' %}" class="nav-link {% if request.path == tag_publish_view %}active{% endif %}">
+                          <i class="nav-icon far fa-plus-square"></i>
+                          <p>Tag Publish</p>
+                        </a>
+                      </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:category_publish_view' %}" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            Category Publish
-                        </p>
+                {% url 'cms:exchangelink_manage_view' as exchangelink_manage_view %}
+                {% url 'cms:exchangelink_publish_view' as exchangelink_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == exchangelink_manage_view or request.path == exchangelink_publish_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == exchangelink_manage_view or request.path == exchangelink_publish_view %}active{% endif %}">
+                      <i class="nav-icon fas fa-link"></i>
+                      <p>
+                        ExchangeLink
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
                     </a>
-                </li>
-                <li class="nav-header">TAG</li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:tag_manage_view' %}" class="nav-link">
-                        <i class="nav-icon fas fa-list"></i>
-                        <p>
-                            Tag Management
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:tag_publish_view' %}" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            Tag Publish
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-header">EXCHANGE LINK</li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:exchangelink_manage_view' %}" class="nav-link">
-                        <i class="nav-icon fas fa-list"></i>
-                        <p>
-                            ExchangeLink Management
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'cms:exchangelink_publish_view' %}" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p>
-                            ExchangeLink Publish
-                        </p>
-                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{% url 'cms:exchangelink_manage_view' %}" class="nav-link {% if request.path == exchangelink_manage_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-list"></i>
+                          <p>ExchangeLink Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cms:exchangelink_publish_view' %}" class="nav-link {% if request.path == exchangelink_publish_view %}active{% endif %}">
+                          <i class="nav-icon far fa-plus-square"></i>
+                          <p>ExchangeLink Publish</p>
+                        </a>
+                      </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

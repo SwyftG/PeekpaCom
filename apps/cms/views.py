@@ -46,7 +46,8 @@ def post_manage_view(request):
     page_obj = paginator.page(page)
     context = {
         "list_data": page_obj.object_list,
-        'list_data_status': Post.STATUS_ITEMS
+        'list_data_status': Post.STATUS_ITEMS,
+        'url_tag_info': ['post', 'post.manage']
     }
     context_data = get_pagination_data(paginator, page_obj)
     context.update(context_data)
@@ -58,7 +59,8 @@ def post_publish_view(request):
         'list_data_category': Category.objects.all(),
         'list_data_tag': Tag.objects.all(),
         'list_data_user': User.objects.all(),
-        'list_data_status': Post.STATUS_ITEMS
+        'list_data_status': Post.STATUS_ITEMS,
+        'url_tag_info': ['post', 'post.publish']
     }
     return render(request, 'cms/post/publish.html', context=context)
 

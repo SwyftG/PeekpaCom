@@ -26,6 +26,16 @@ def detail(request, time_id):
     return render(request, 'post/detail.html', context=context)
 
 
+def post_list_view(request):
+    list_post = Post.objects.all()
+    context = {
+        'list_post': list_post
+    }
+    context.update(get_read_most_post())
+    context.update(get_exchange_link())
+    return render(request, 'post/list.html', context=context)
+
+
 def get_read_most_post():
     read_post = Post.objects.all().order_by('-read_num')
     if len(read_post) > 5:
