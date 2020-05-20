@@ -3,8 +3,11 @@ from .forms import ExchangeLinkForm, ExchangeLinkEditForm
 from apps.exchangelink.models import ExchangeLink
 from django.shortcuts import render, redirect, reverse
 from utils import restful
+from django.utils.decorators import method_decorator
+from apps.peekpauser.decorators import peekpa_login_required
 
 
+@method_decorator(peekpa_login_required, name='post')
 class ExchangeLinkView(View):
     def post(self, request):
         # 新建提交
@@ -40,6 +43,7 @@ class ExchangeLinkView(View):
             return redirect(reverse("cms:exchangelink_publish_view"))
 
 
+@method_decorator(peekpa_login_required, name='get')
 class ExchangeLinkEditView(View):
     def get(self, request):
         exchangelink_id = request.GET.get('exchangelink_id')
@@ -51,6 +55,7 @@ class ExchangeLinkEditView(View):
         return render(request, 'cms/exchangelink/publish.html', context=context)
 
 
+@method_decorator(peekpa_login_required, name='post')
 class ExchangeLinkDeleteView(View):
     def post(self, request):
         exchangelink_id = request.POST.get('exchangelink_id')

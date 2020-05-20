@@ -3,8 +3,11 @@ from .forms import NavItemForm, NavItemEditForm
 from apps.basefunction.models import NavbarItem
 from django.shortcuts import render, redirect, reverse
 from utils import restful
+from django.utils.decorators import method_decorator
+from apps.peekpauser.decorators import peekpa_login_required
 
 
+@method_decorator(peekpa_login_required, name='post')
 class NavItemView(View):
     def post(self, request):
         # 新建提交
@@ -42,6 +45,7 @@ class NavItemView(View):
             return redirect(reverse("cms:navitem_publish_view"))
 
 
+@method_decorator(peekpa_login_required, name='get')
 class NavItemEditView(View):
     def get(self, request):
         navitem_id = request.GET.get('navitem_id')
@@ -54,6 +58,7 @@ class NavItemEditView(View):
         return render(request, 'cms/navitem/publish.html', context=context)
 
 
+@method_decorator(peekpa_login_required, name='post')
 class NavItemDeleteView(View):
     def post(self, request):
         navitem_id = request.POST.get('navitem_id')

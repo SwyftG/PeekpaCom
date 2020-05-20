@@ -3,8 +3,11 @@ from .forms import TagForm, TagEditForm
 from apps.poster.models import Tag
 from django.shortcuts import render, redirect, reverse
 from utils import restful
+from django.utils.decorators import method_decorator
+from apps.peekpauser.decorators import peekpa_login_required
 
 
+@method_decorator(peekpa_login_required, name='post')
 class TagView(View):
     def post(self, request):
         # 新建提交
@@ -34,6 +37,7 @@ class TagView(View):
             return redirect(reverse("cms:tag_publish_view"))
 
 
+@method_decorator(peekpa_login_required, name='get')
 class TagEditView(View):
     def get(self,request):
         tag_id = request.GET.get('tag_id')
@@ -44,6 +48,7 @@ class TagEditView(View):
         return render(request, 'cms/tag/publish.html', context=context)
 
 
+@method_decorator(peekpa_login_required, name='post')
 class TagDeleteView(View):
     def post(self,request):
         tag_id = request.POST.get('tag_id')

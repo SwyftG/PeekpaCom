@@ -5,7 +5,7 @@ from apps.basefunction.models import NavbarItem
 from apps.peekpauser.models import User
 from django.core.paginator import Paginator
 from django.conf import settings
-from django.views.decorators.http import require_POST
+from apps.peekpauser.decorators import peekpa_login_required
 
 # Create your views here.
 
@@ -14,10 +14,12 @@ def cms_login(request):
     return render(request, 'cms/login.html')
 
 
+@peekpa_login_required
 def cms_dashboard(request):
     return render(request, 'cms/home.html')
 
 
+@peekpa_login_required
 def category_manage_view(request):
     context = {
         "list_data": Category.objects.all()
@@ -25,10 +27,12 @@ def category_manage_view(request):
     return render(request, 'cms/category/manage.html', context=context)
 
 
+@peekpa_login_required
 def category_publish_view(request):
     return render(request, 'cms/category/publish.html')
 
 
+@peekpa_login_required
 def tag_manage_view(request):
     context = {
         "list_data": Tag.objects.all()
@@ -36,10 +40,12 @@ def tag_manage_view(request):
     return render(request, 'cms/tag/manage.html', context=context)
 
 
+@peekpa_login_required
 def tag_publish_view(request):
     return render(request, 'cms/tag/publish.html')
 
 
+@peekpa_login_required
 def post_manage_view(request):
     page = int(request.GET.get('p', 1))
     posts = Post.objects.all()
@@ -55,6 +61,7 @@ def post_manage_view(request):
     return render(request, 'cms/post/manage.html', context=context)
 
 
+@peekpa_login_required
 def post_publish_view(request):
     context = {
         'list_data_category': Category.objects.all(),
@@ -97,6 +104,7 @@ def get_pagination_data(paginator, page_obj, around_count=2):
     }
 
 
+@peekpa_login_required
 def exchangelink_manage_view(request):
     context = {
         "list_data": ExchangeLink.objects.all(),
@@ -105,6 +113,7 @@ def exchangelink_manage_view(request):
     return render(request, 'cms/exchangelink/manage.html', context=context)
 
 
+@peekpa_login_required
 def exchangelink_publish_view(request):
     context = {
         'list_data_status': ExchangeLink.STATUS_ITEMS
@@ -112,6 +121,7 @@ def exchangelink_publish_view(request):
     return render(request, 'cms/exchangelink/publish.html', context=context)
 
 
+@peekpa_login_required
 def navitem_manage_view(request):
     context = {
         "list_data": NavbarItem.objects.all(),
@@ -121,6 +131,7 @@ def navitem_manage_view(request):
     return render(request, 'cms/navitem/manage.html', context=context)
 
 
+@peekpa_login_required
 def navitem_publish_view(request):
     context = {
         'list_data_status': NavbarItem.STATUS_ITEMS,

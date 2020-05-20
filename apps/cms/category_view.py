@@ -3,8 +3,11 @@ from .forms import CategoryForm, CategoryEditForm
 from apps.poster.models import Category
 from django.shortcuts import render, redirect, reverse
 from utils import restful
+from django.utils.decorators import method_decorator
+from apps.peekpauser.decorators import peekpa_login_required
 
 
+@method_decorator(peekpa_login_required, name='post')
 class CategoryView(View):
     def post(self, request):
         # 新建提交
@@ -34,6 +37,7 @@ class CategoryView(View):
             return redirect(reverse("cms:category_publish_view"))
 
 
+@method_decorator(peekpa_login_required, name='get')
 class CategoryEditView(View):
     def get(self,request):
         category_id = request.GET.get('category_id')
@@ -44,6 +48,7 @@ class CategoryEditView(View):
         return render(request, 'cms/category/publish.html', context=context)
 
 
+@method_decorator(peekpa_login_required, name='post')
 class CategoryDeleteView(View):
     def post(self,request):
         category_id = request.POST.get('category_id')

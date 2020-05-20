@@ -36,4 +36,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect(reverse('index'))
+    return redirect(reverse('cms:login'))

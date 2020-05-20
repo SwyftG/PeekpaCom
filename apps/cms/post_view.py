@@ -5,8 +5,11 @@ from apps.peekpauser.models import User
 from django.shortcuts import render, redirect, reverse
 from utils import restful
 import mistune
+from django.utils.decorators import method_decorator
+from apps.peekpauser.decorators import peekpa_login_required
 
 
+@method_decorator(peekpa_login_required, name='post')
 class PostView(View):
     def post(self, request):
         # 新建提交
@@ -80,6 +83,7 @@ class PostView(View):
             return redirect(reverse("cms:post_publish_view"))
 
 
+@method_decorator(peekpa_login_required, name='get')
 class PostEditView(View):
     def get(self, request):
         post_id = request.GET.get('post_id')
@@ -98,6 +102,7 @@ class PostEditView(View):
         return render(request, 'cms/post/publish.html', context=context)
 
 
+@method_decorator(peekpa_login_required, name='post')
 class PostDeleteView(View):
     def post(self, request):
         post_id = request.POST.get('post_id')
