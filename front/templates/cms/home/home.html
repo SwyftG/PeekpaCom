@@ -1,0 +1,39 @@
+{% extends 'cms/base/dashboard_base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block main %}
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid pt-4">
+
+            {% include 'cms/home/home_top.html' %}
+
+            <div class="row">
+                <div class="col-sm-6">
+                    {% include 'cms/home/home_visit_chat.html' %}
+                </div>
+                <div class="col-sm-6">
+                    {% include 'cms/home/home_advertise.html' %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    {% include 'cms/home/home_visit_table.html' %}
+                </div>
+                <div class="col-sm-6">
+                    {% include 'cms/home/home_post_table.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

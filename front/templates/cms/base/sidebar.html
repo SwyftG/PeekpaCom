@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="https://via.placeholder.com/100x100" alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3"
+    <a href="{% url 'cms:dashboard' %}" class="brand-link">
+        <img src="{% static 'images/cms_logo.png' %}" alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3 border"
              style="opacity: .8">
         <span class="brand-text font-weight-light"><b>Peekpa</b>控制台</span>
     </a>
@@ -16,8 +16,9 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                {% url 'cms:dashboard' as cms_home_page %}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ cms_home_page }}" class="nav-link {% if request.path == cms_home_page %}active{% endif %}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Home
@@ -145,6 +146,31 @@
                         <a href="{% url 'cms:navitem_publish_view' %}" class="nav-link {% if request.path == navitem_publish_view %}active{% endif %}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Publish</p>
+                        </a>
+                      </li>
+                    </ul>
+                </li>
+                {% url 'cms:monitor_userip_view' as monitor_userip_view%}
+                {% url 'cms:monitor_postview_view' as monitor_postview_view %}
+                <li class="nav-item has-treeview {% if request.path == monitor_userip_view or request.path == monitor_postview_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == monitor_userip_view or request.path == monitor_postview_view %}active{% endif %}">
+                      <i class="nav-icon fas fa-desktop"></i>
+                      <p>
+                        Monitor
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{% url 'cms:monitor_userip_view' %}" class="nav-link {% if request.path == monitor_userip_view %}active{% endif %}">
+                          <i class="far fa-address-book nav-icon"></i>
+                          <p>User IP</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cms:monitor_postview_view' %}" class="nav-link {% if request.path == monitor_postview_view %}active{% endif %}">
+                          <i class="fas fa-eye nav-icon"></i>
+                          <p>Post View</p>
                         </a>
                       </li>
                     </ul>

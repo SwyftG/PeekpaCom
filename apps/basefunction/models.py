@@ -1,4 +1,7 @@
+import datetime
+
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -33,3 +36,25 @@ class NavbarItem(models.Model):
         else:
             self.show_name = self.name
         super().save(*args, **kwargs)
+
+
+class UserIP(models.Model):
+    ip_address = models.CharField(max_length=30)
+    ip_location = models.CharField(max_length=30)
+    end_point = models.CharField(default='/', max_length=30)
+    create_time = models.DateTimeField(auto_now_add=True)
+    day = models.DateField(default=timezone.now)
+
+    class Meta:
+        ordering = ['-create_time']
+
+
+class VisitNumber(models.Model):
+    count = models.IntegerField(default=0)
+
+
+class DayNumber(models.Model):
+    day = models.DateField(default=timezone.now)
+    count = models.IntegerField(default=0)
+
+

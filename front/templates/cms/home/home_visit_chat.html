@@ -1,0 +1,88 @@
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title">Website Visitors</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex">
+            <p class="d-flex flex-column">
+                <span class="text-bold text-lg">{{ visit_week_total_number }}</span>
+                <span>Visitors Over Time</span>
+            </p>
+            <span class="mr-2 ml-auto">
+    <i class="fas fa-square text-primary"></i> This Week
+  </span>
+        </div>
+
+        <div class="position-relative mb-4">
+            <canvas id="visitors-chart" height="200"></canvas>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var ticksStyle = {
+            fontColor: '#495057',
+            fontStyle: 'bold'
+        }
+        var $visitorsChart = $('#visitors-chart')
+        var visitorsChart2 = new Chart($visitorsChart, {
+            data: {
+                labels: {{ date_time_list }},
+                datasets: [{
+                    type: 'line',
+                    data: {{ week_data_list }},
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    pointBorderColor: '#007bff',
+                    pointBackgroundColor: '#007bff',
+                    fill: true
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    mode: 'index',
+                    intersect: true
+                },
+                hover: {
+                    mode: 'index',
+                    intersect: true
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        // display: false,
+                        gridLines: {
+                            display: true,
+                            lineWidth: '4px',
+                            color: 'rgba(0, 0, 0, .2)',
+                            zeroLineColor: 'transparent'
+                        },
+                        ticks: $.extend({
+                            beginAtZero: false,
+                            suggestedMax: {{ suggested_max }}
+                        }, ticksStyle)
+                    }],
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: ticksStyle
+                    }]
+                }
+            }
+        })
+    })
+</script>

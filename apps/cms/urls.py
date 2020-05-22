@@ -42,4 +42,7 @@ urlpatterns = [
     path("dashboard/navitem/add", NavItemView.as_view(), name="navitem_add"),
     path("dashboard/navitem/edit", NavItemEditView.as_view(), name="navitem_edit"),
     path("dashboard/navitem/delete", NavItemDeleteView.as_view(), name="navitem_delete"),
+
+    path("dashboard/monitor/userip", views.monitor_userip_view, name="monitor_userip_view"),
+    path("dashboard/monitor/postview", views.monitor_postview_view, name="monitor_postview_view"),
 ]

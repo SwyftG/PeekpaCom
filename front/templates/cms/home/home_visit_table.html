@@ -1,0 +1,38 @@
+{% load  post_filters %}
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title">Visitor IP Table</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+            <a href="{% url 'cms:monitor_userip_view' %}" class="btn btn-tool btn-sm">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-striped table-valign-middle">
+            <thead>
+            <tr>
+                <th>IP</th>
+                <th>Location</th>
+                <th>Endpoint</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if visitor_data_list %}
+                {% for visitor_data in visitor_data_list %}
+                    <tr>
+                        <td>{{ visitor_data.ip_address }}</td>
+                        <td>{{ visitor_data.ip_location }}</td>
+                        <td>{{ visitor_data.end_point }}</td>
+                        <td>{{ visitor_data.create_time | time_format }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>

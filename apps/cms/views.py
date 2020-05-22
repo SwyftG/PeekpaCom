@@ -1,5 +1,10 @@
+import datetime
+
 from django.shortcuts import render
+from django.utils import timezone
+
 from apps.poster.models import Category, Tag, Post
+from apps.basefunction.models import VisitNumber, DayNumber, UserIP
 from apps.exchangelink.models import ExchangeLink
 from apps.basefunction.models import NavbarItem
 from apps.peekpauser.models import User
@@ -16,7 +21,12 @@ def cms_login(request):
 
 @peekpa_login_required
 def cms_dashboard(request):
-    return render(request, 'cms/home.html')
+    context = {}
+    context.update(get_dashboard_top_data())
+    context.update(get_dashboard_visitor_chart())
+    context.update(get_dashboard_visitor_ip_table(10))
+    context.update(get_dashboard_post_view_table(10))
+    return render(request, 'cms/home/home.html', context=context)
 
 
 @peekpa_login_required
@@ -132,9 +142,134 @@ def navitem_manage_view(request):
 
 
 @peekpa_login_required
+def monitor_userip_view(request):
+    page = int(request.GET.get('p', 1))
+    posts = UserIP.objects.all().order_by('-create_time')
+    paginator = Paginator(posts, settings.ONE_PAGE_NEWS_COUNT)
+    page_obj = paginator.page(page)
+    day_count = DayNumber.objects.filter(day=timezone.now().date())
+    ip_count_num = day_count[0].count if day_count else 0
+
+    context = {
+        "list_data": page_obj.object_list,
+        "day_time": timezone.now().date(),
+        "ip_count_num": ip_count_num
+    }
+    context_data = get_pagination_data(paginator, page_obj)
+    context.update(context_data)
+    return render(request, 'cms/monitor/userip_manage.html', context=context)
+
+
+@peekpa_login_required
+def monitor_postview_view(request):
+    page = int(request.GET.get('p', 1))
+    posts = get_dashboard_post_view_table(-1)['post_view_table_list']
+    paginator = Paginator(posts, settings.ONE_PAGE_NEWS_COUNT)
+    page_obj = paginator.page(page)
+    context = {
+        "list_data": page_obj.object_list,
+    }
+    context_data = get_pagination_data(paginator, page_obj)
+    context.update(context_data)
+    return render(request, 'cms/monitor/post_view_manage.html', context=context)
+
+
+
+@peekpa_login_required
 def navitem_publish_view(request):
     context = {
         'list_data_status': NavbarItem.STATUS_ITEMS,
         'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
     }
     return render(request, 'cms/navitem/publish.html', context=context)
+
+
+def get_dashboard_top_data():
+    post_num = Post.objects.all().count()
+    day_visit_ip_set = set()
+    day_visit_ip_list = UserIP.objects.filter(day=timezone.now().date())
+    if day_visit_ip_list:
+        for user_ip_item in day_visit_ip_list:
+            if user_ip_item.ip_address not in day_visit_ip_set:
+                day_visit_ip_set.add(user_ip_item.ip_address)
+    day_visit_ip_num = len(day_visit_ip_set)
+    day_visit_num = DayNumber.objects.filter(day=timezone.now().date())[0].count
+    total_visit_num = VisitNumber.objects.filter(id=1)[0].count
+    context = {
+        "post_num": post_num,
+        "day_visit_ip_num": day_visit_ip_num,
+        "day_visit_num": day_visit_num,
+        "total_visit_num": total_visit_num
+    }
+    return context
+
+
+def get_dashboard_visitor_ip_table(max_num):
+    visitor_data = UserIP.objects.filter(day=timezone.now().date())
+    if len(visitor_data):
+        visitor_data = visitor_data[:max_num]
+    context = {
+        'visitor_data_list': visitor_data,
+    }
+    return context
+
+
+def get_dashboard_visitor_chart():
+    days_list = []
+    visit_list = []
+    max_num = 0
+    week_total_num = 0
+    for index in range(6, -1, -1):
+        day, format_date = get_before_date(index)
+        days_list.append(int(day))
+        day_visit_num = 0
+        daynumber_item = DayNumber.objects.filter(day=format_date)
+        if daynumber_item:
+            day_visit_num = daynumber_item[0].count
+        visit_list.append(day_visit_num)
+        week_total_num += day_visit_num
+        max_num = day_visit_num if day_visit_num > max_num else max_num
+    context = {
+        'visit_week_total_number': day_visit_num,
+        'date_time_list': days_list,
+        'week_data_list': visit_list,
+        'suggested_max': max_num
+    }
+    return context
+
+
+def get_before_date(day):
+    today = datetime.datetime.now()
+    offset = datetime.timedelta(days=-day)
+    re_day = (today + offset).strftime("%d")
+    re_date = (today + offset).strftime("%Y-%m-%d")
+    return re_day, re_date
+
+
+def get_dashboard_post_view_table(max_num):
+    visitor_day_data = UserIP.objects.filter(day=timezone.now().date(), end_point__contains='/detail/')
+    post_map = {}
+    post_view_table_list = []
+    if visitor_day_data:
+        for item in visitor_day_data:
+            post_id = item.end_point.split('/')[2]
+            if post_id in post_map:
+                post_map[post_id] += 1
+            else:
+                post_map[post_id] = 1
+    if post_map:
+        for key in post_map:
+            key = key
+            post_item = Post.objects.filter(time_id=key)
+            if post_item:
+                post_item[0].inscrease = post_map[key]
+                post_view_table_list.append(post_item[0])
+    if post_view_table_list:
+        post_view_table_list.sort(key=lambda x: x.inscrease, reverse=True)
+    if max_num > 0 and len(post_view_table_list) > max_num:
+        post_view_table_list = post_view_table_list[:max_num]
+    context = {
+        'post_view_table_list': post_view_table_list,
+    }
+    return context
+

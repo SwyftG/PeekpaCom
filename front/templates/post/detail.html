@@ -7,6 +7,10 @@ Peekpa
 
 {% block head %}
     <link rel="stylesheet"
+      href="{% static 'highlight/css/default.min.css' %}">
+    <script src="{% static 'highlight/js/highlight.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad()</script>
+    <link rel="stylesheet"
           href="{% static 'css/post/post_detail.min.css' %}">
     <meta name="referrer" content="same-origin">
     <meta name="referrer" content="no-referrer">
