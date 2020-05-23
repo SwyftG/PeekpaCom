@@ -18,7 +18,8 @@ class ExchangeLinkView(View):
                 show_name = form.cleaned_data.get('show_name')
                 url = form.cleaned_data.get('url')
                 status = form.cleaned_data.get('status')
-                ExchangeLink.objects.create(name=name, show_name=show_name, url=url, status=status)
+                if request.user.is_superuser:
+                    ExchangeLink.objects.create(name=name, show_name=show_name, url=url, status=status)
                 return redirect(reverse("cms:exchangelink_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -31,7 +32,8 @@ class ExchangeLinkView(View):
                 show_name = form.cleaned_data.get('show_name')
                 url = form.cleaned_data.get('url')
                 status = form.cleaned_data.get('status')
-                ExchangeLink.objects.filter(id=pk).update(name=name, show_name=show_name, url=url, status=status)
+                if request.user.is_superuser:
+                    ExchangeLink.objects.filter(id=pk).update(name=name, show_name=show_name, url=url, status=status)
                 return redirect(reverse("cms:exchangelink_manage_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -59,5 +61,6 @@ class ExchangeLinkEditView(View):
 class ExchangeLinkDeleteView(View):
     def post(self, request):
         exchangelink_id = request.POST.get('exchangelink_id')
-        ExchangeLink.objects.filter(id=exchangelink_id).update(status=ExchangeLink.STATUS_DELETE)
+        if request.user.is_superuser:
+            ExchangeLink.objects.filter(id=exchangelink_id).update(status=ExchangeLink.STATUS_DELETE)
         return restful.ok()

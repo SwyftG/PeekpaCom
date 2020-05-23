@@ -4,6 +4,7 @@ from apps.poster.models import Category, Tag, Post
 from apps.exchangelink.models import ExchangeLink
 from apps.basefunction.models import NavbarItem
 from apps.datacenter.models import Code
+from apps.peekpauser.models import User
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -85,6 +86,22 @@ class CodeForm(forms.ModelForm, FormMixin):
 
 
 class CodeEditForm(forms.ModelForm, FormMixin):
+    pk = forms.CharField(max_length=100)
+
+    class Meta:
+        model = Code
+        exclude = ('visit_num',)
+
+
+class UserForm(forms.Form, FormMixin):
+    username = forms.CharField(max_length=20)
+    email = forms.EmailField()
+    password = forms.CharField(max_length=20, min_length=6,
+                                error_messages={"max_length": "面最多不能超过20字符", "min_length": "密码最少不得少于6个字符"})
+
+
+
+class UserEditForm(forms.ModelForm, FormMixin):
     pk = forms.CharField(max_length=100)
 
     class Meta:

@@ -19,7 +19,8 @@ class NavItemView(View):
                 url_path = form.cleaned_data.get('url_path')
                 status = form.cleaned_data.get('status')
                 show_page = form.cleaned_data.get('show_page')
-                NavbarItem.objects.create(name=name, show_name=show_name, url_path=url_path, status=status, show_page=show_page)
+                if request.user.is_superuser:
+                    NavbarItem.objects.create(name=name, show_name=show_name, url_path=url_path, status=status, show_page=show_page)
                 return redirect(reverse("cms:navitem_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -33,7 +34,8 @@ class NavItemView(View):
                 url_path = form.cleaned_data.get('url_path')
                 status = form.cleaned_data.get('status')
                 show_page = form.cleaned_data.get('show_page')
-                NavbarItem.objects.filter(id=pk).update(name=name, show_name=show_name, url_path=url_path, status=status, show_page=show_page)
+                if request.user.is_superuser:
+                    NavbarItem.objects.filter(id=pk).update(name=name, show_name=show_name, url_path=url_path, status=status, show_page=show_page)
                 return redirect(reverse("cms:navitem_manage_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -62,5 +64,6 @@ class NavItemEditView(View):
 class NavItemDeleteView(View):
     def post(self, request):
         navitem_id = request.POST.get('navitem_id')
-        NavbarItem.objects.filter(id=navitem_id).update(status=NavbarItem.STATUS_DELETE)
+        if request.user.is_superuser:
+            NavbarItem.objects.filter(id=navitem_id).update(status=NavbarItem.STATUS_DELETE)
         return restful.ok()

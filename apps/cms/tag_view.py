@@ -15,7 +15,8 @@ class TagView(View):
             form = TagForm(request.POST)
             if form.is_valid():
                 name = form.cleaned_data.get('name')
-                Tag.objects.create(name=name)
+                if request.user.is_superuser:
+                    Tag.objects.create(name=name)
                 return redirect(reverse("cms:tag_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -25,7 +26,8 @@ class TagView(View):
             if form.is_valid():
                 pk = form.cleaned_data.get('pk')
                 name = form.cleaned_data.get('name')
-                Tag.objects.filter(id=pk).update(name=name)
+                if request.user.is_superuser:
+                    Tag.objects.filter(id=pk).update(name=name)
                 return redirect(reverse("cms:tag_manage_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -52,5 +54,6 @@ class TagEditView(View):
 class TagDeleteView(View):
     def post(self,request):
         tag_id = request.POST.get('tag_id')
-        Tag.objects.filter(id=tag_id).delete()
+        if request.user.is_superuser:
+            Tag.objects.filter(id=tag_id).delete()
         return restful.ok()

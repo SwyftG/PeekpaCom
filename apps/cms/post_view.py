@@ -32,12 +32,13 @@ class PostView(View):
                 time_id = form.cleaned_data.get('time_id')
                 read_num = form.cleaned_data.get('read_num')
                 tags = form.cleaned_data.get('tag_id')
-                instance = Post.objects.create(title=title, description=description, author=author,
-                                    thumbnail=thumbnail, status=status, content=content,
-                                    is_md=is_md, category=category, priority=priority,
-                                    is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
-                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num)
-                instance.tag.set(tags)
+                if request.user.is_superuser:
+                    instance = Post.objects.create(title=title, description=description, author=author,
+                                        thumbnail=thumbnail, status=status, content=content,
+                                        is_md=is_md, category=category, priority=priority,
+                                        is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
+                                        publish_time_show=publish_time_show, time_id=time_id,read_num=read_num)
+                    instance.tag.set(tags)
                 return redirect(reverse("cms:post_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -62,16 +63,17 @@ class PostView(View):
                 time_id = form.cleaned_data.get('time_id')
                 read_num = form.cleaned_data.get('read_num')
                 tags = form.cleaned_data.get('tag_id')
-                instance = Post.objects.filter(id=id)
-                if is_md:
-                    content_html = mistune.markdown(content)
-                instance.update(title=title, description=description, author=author,
-                                    thumbnail=thumbnail, status=status, content=content,
-                                    is_md=is_md, category=category, priority=priority,
-                                    is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
-                                    publish_time_show=publish_time_show, time_id=time_id,read_num=read_num,
-                                    content_html=content_html)
-                instance.first().tag.set(tags)
+                if request.user.is_superuser:
+                    instance = Post.objects.filter(id=id)
+                    if is_md:
+                        content_html = mistune.markdown(content)
+                    instance.update(title=title, description=description, author=author,
+                                        thumbnail=thumbnail, status=status, content=content,
+                                        is_md=is_md, category=category, priority=priority,
+                                        is_hot=is_hot, is_top=is_top, is_main_page=is_main_page,
+                                        publish_time_show=publish_time_show, time_id=time_id,read_num=read_num,
+                                        content_html=content_html)
+                    instance.first().tag.set(tags)
                 return redirect(reverse("cms:post_manage_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -106,5 +108,6 @@ class PostEditView(View):
 class PostDeleteView(View):
     def post(self, request):
         post_id = request.POST.get('post_id')
-        Post.objects.filter(id=post_id).update(status=Post.STATUS_DELETE)
+        if request.user.is_superuser:
+            Post.objects.filter(id=post_id).update(status=Post.STATUS_DELETE)
         return restful.ok()

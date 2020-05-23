@@ -11,7 +11,7 @@ from apps.peekpauser.models import User
 from apps.datacenter.models import Code
 from django.core.paginator import Paginator
 from django.conf import settings
-from apps.peekpauser.decorators import peekpa_login_required
+from apps.peekpauser.decorators import peekpa_login_required, peekpa_login_superuser
 from apps.basefunction.global_peekpa import init_peekpa
 
 # Create your views here.
@@ -145,12 +145,22 @@ def navitem_manage_view(request):
 
 
 @peekpa_login_required
+@peekpa_login_superuser
 def code_manage_view(request):
     context = {
         "list_data": Code.objects.all(),
         'list_data_status': Code.STATUS_ITEMS,
     }
     return render(request, 'cms/code/manage.html', context=context)
+
+
+@peekpa_login_required
+@peekpa_login_superuser
+def user_manage_view(request):
+    context = {
+        "list_data": User.objects.all(),
+    }
+    return render(request, 'cms/user/manage.html', context=context)
 
 
 @peekpa_login_required
@@ -196,11 +206,21 @@ def navitem_publish_view(request):
 
 
 @peekpa_login_required
+@peekpa_login_superuser
 def code_publish_view(request):
     context = {
         'list_data_status': Code.STATUS_ITEMS,
     }
     return render(request, 'cms/code/publish.html', context=context)
+
+
+@peekpa_login_required
+@peekpa_login_superuser
+def user_publish_view(request):
+    context = {
+
+    }
+    return render(request, 'cms/user/publish.html', context=context)
 
 
 def get_dashboard_top_data():

@@ -4,10 +4,11 @@ from apps.datacenter.models import Code
 from django.shortcuts import render, redirect, reverse
 from utils import restful
 from django.utils.decorators import method_decorator
-from apps.peekpauser.decorators import peekpa_login_required
+from apps.peekpauser.decorators import peekpa_login_required, peekpa_login_superuser
 
 
 @method_decorator(peekpa_login_required, name='post')
+@method_decorator(peekpa_login_superuser, name='post')
 class CodeView(View):
     def post(self, request):
         # 新建提交
@@ -21,7 +22,7 @@ class CodeView(View):
                 return redirect(reverse("cms:code_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
-        # 修改NavbarItem
+        # 修改 Code
         elif 'modify' in request.POST:
             form = CodeEditForm(request.POST)
             if form.is_valid():
@@ -42,6 +43,7 @@ class CodeView(View):
 
 
 @method_decorator(peekpa_login_required, name='get')
+@method_decorator(peekpa_login_superuser, name='get')
 class CodeEditView(View):
     def get(self, request):
         code_id = request.GET.get('code_id')
@@ -54,6 +56,7 @@ class CodeEditView(View):
 
 
 @method_decorator(peekpa_login_required, name='post')
+@method_decorator(peekpa_login_superuser, name='post')
 class CodeDeleteView(View):
     def post(self, request):
         code_id = request.POST.get('code_id')

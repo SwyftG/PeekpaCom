@@ -150,31 +150,59 @@
                       </li>
                     </ul>
                 </li>
-                {% url 'cms:code_manage_view' as code_manage_view %}
-                {% url 'cms:code_publish_view' as code_publish_view %}
-                <li class="nav-item has-treeview {% if request.path == code_manage_view or request.path == code_publish_view %}menu-open{% endif %}">
-                    <a href="#" class="nav-link {% if request.path == code_manage_view or request.path == code_publish_view %}active{% endif %}">
-                      <i class="nav-icon fas fa-code"></i>
-                      <p>
-                        Code Item
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="{% url 'cms:code_manage_view' %}" class="nav-link {% if request.path == code_manage_view %}active{% endif %}">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Management</p>
+                {% if request.user.is_superuser %}
+                    {% url 'cms:code_manage_view' as code_manage_view %}
+                    {% url 'cms:code_publish_view' as code_publish_view %}
+                    <li class="nav-item has-treeview {% if request.path == code_manage_view or request.path == code_publish_view %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == code_manage_view or request.path == code_publish_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-code"></i>
+                          <p>
+                            Code
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
                         </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{% url 'cms:code_publish_view' %}" class="nav-link {% if request.path == code_publish_view %}active{% endif %}">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Publish</p>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="{% url 'cms:code_manage_view' %}" class="nav-link {% if request.path == code_manage_view %}active{% endif %}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Management</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{% url 'cms:code_publish_view' %}" class="nav-link {% if request.path == code_publish_view %}active{% endif %}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Publish</p>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
+                    {% url 'cms:user_manage_view' as user_manage_view %}
+                    {% url 'cms:user_publish_view' as user_publish_view %}
+                    <li class="nav-item has-treeview {% if request.path == user_manage_view or request.path == user_publish_view %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == user_manage_view or request.path == user_publish_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-user"></i>
+                          <p>
+                            User
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
                         </a>
-                      </li>
-                    </ul>
-                </li>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="{% url 'cms:user_manage_view' %}" class="nav-link {% if request.path == user_manage_view %}active{% endif %}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Management</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="{% url 'cms:user_publish_view' %}" class="nav-link {% if request.path == user_publish_view %}active{% endif %}">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Publish</p>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
                 {% url 'cms:monitor_userip_view' as monitor_userip_view%}
                 {% url 'cms:monitor_postview_view' as monitor_postview_view %}
                 <li class="nav-item has-treeview {% if request.path == monitor_userip_view or request.path == monitor_postview_view %}menu-open{% endif %}">

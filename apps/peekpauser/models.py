@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 # super user: g@g.com Swyft 12341234
 class User(AbstractBaseUser, PermissionsMixin):
     uid = ShortUUIDField(primary_key=True)
-    telephone = models.CharField(max_length=11, unique=True)
+    telephone = models.CharField(max_length=11)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=100)
     nickname = models.CharField(max_length=100, default="")

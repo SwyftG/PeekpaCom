@@ -15,7 +15,8 @@ class CategoryView(View):
             form = CategoryForm(request.POST)
             if form.is_valid():
                 name = form.cleaned_data.get('name')
-                Category.objects.create(name=name)
+                if request.user.is_superuser:
+                    Category.objects.create(name=name)
                 return redirect(reverse("cms:category_publish_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -25,7 +26,8 @@ class CategoryView(View):
             if form.is_valid():
                 pk = form.cleaned_data.get('pk')
                 name = form.cleaned_data.get('name')
-                Category.objects.filter(id=pk).update(name=name)
+                if request.user.is_superuser:
+                    Category.objects.filter(id=pk).update(name=name)
                 return redirect(reverse("cms:category_manage_view"))
             else:
                 return restful.method_error("Form is error", form.get_errors())
@@ -52,5 +54,6 @@ class CategoryEditView(View):
 class CategoryDeleteView(View):
     def post(self,request):
         category_id = request.POST.get('category_id')
-        Category.objects.filter(id=category_id).delete()
+        if request.user.is_superuser:
+            Category.objects.filter(id=category_id).delete()
         return restful.ok()

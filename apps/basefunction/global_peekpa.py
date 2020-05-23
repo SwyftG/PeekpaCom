@@ -10,7 +10,6 @@ peekpa_config = {
 
 def init_peekpa():
     init_peekpa_config()
-    print(peekpa_config)
 
 
 def init_peekpa_config():
