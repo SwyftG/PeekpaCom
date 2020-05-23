@@ -8,9 +8,11 @@ from apps.basefunction.models import VisitNumber, DayNumber, UserIP
 from apps.exchangelink.models import ExchangeLink
 from apps.basefunction.models import NavbarItem
 from apps.peekpauser.models import User
+from apps.datacenter.models import Code
 from django.core.paginator import Paginator
 from django.conf import settings
 from apps.peekpauser.decorators import peekpa_login_required
+from apps.basefunction.global_peekpa import init_peekpa
 
 # Create your views here.
 
@@ -21,6 +23,7 @@ def cms_login(request):
 
 @peekpa_login_required
 def cms_dashboard(request):
+    init_peekpa()
     context = {}
     context.update(get_dashboard_top_data())
     context.update(get_dashboard_visitor_chart())
@@ -142,6 +145,15 @@ def navitem_manage_view(request):
 
 
 @peekpa_login_required
+def code_manage_view(request):
+    context = {
+        "list_data": Code.objects.all(),
+        'list_data_status': Code.STATUS_ITEMS,
+    }
+    return render(request, 'cms/code/manage.html', context=context)
+
+
+@peekpa_login_required
 def monitor_userip_view(request):
     page = int(request.GET.get('p', 1))
     posts = UserIP.objects.all().order_by('-create_time')
@@ -174,7 +186,6 @@ def monitor_postview_view(request):
     return render(request, 'cms/monitor/post_view_manage.html', context=context)
 
 
-
 @peekpa_login_required
 def navitem_publish_view(request):
     context = {
@@ -182,6 +193,14 @@ def navitem_publish_view(request):
         'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
     }
     return render(request, 'cms/navitem/publish.html', context=context)
+
+
+@peekpa_login_required
+def code_publish_view(request):
+    context = {
+        'list_data_status': Code.STATUS_ITEMS,
+    }
+    return render(request, 'cms/code/publish.html', context=context)
 
 
 def get_dashboard_top_data():

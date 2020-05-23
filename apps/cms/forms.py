@@ -3,6 +3,7 @@ from apps.base.forms import FormMixin
 from apps.poster.models import Category, Tag, Post
 from apps.exchangelink.models import ExchangeLink
 from apps.basefunction.models import NavbarItem
+from apps.datacenter.models import Code
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -75,3 +76,18 @@ class NavItemEditForm(forms.ModelForm, FormMixin):
     class Meta:
         model = NavbarItem
         fields = "__all__"
+
+
+class CodeForm(forms.ModelForm, FormMixin):
+    class Meta:
+        model = Code
+        exclude = ('visit_num',)
+
+
+class CodeEditForm(forms.ModelForm, FormMixin):
+    pk = forms.CharField(max_length=100)
+
+    class Meta:
+        model = Code
+        exclude = ('visit_num',)
+

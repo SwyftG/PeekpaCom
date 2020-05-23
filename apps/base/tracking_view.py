@@ -34,7 +34,6 @@ def update_user_ip(request):
         client_ip = client_ip.split(",")[0]  # 所以这里是真实的 ip
     else:
         client_ip = request.META['REMOTE_ADDR']  # 这里获得代理 ip
-    print("UserIp:", client_ip)
     userIP_item = UserIP()
     userIP_item.ip_address = client_ip
     userIP_item.ip_location = "TBA"

@@ -5,6 +5,7 @@ from .tag_view import TagView, TagEditView, TagDeleteView
 from .post_view import PostView, PostEditView, PostDeleteView
 from .exchangelink_view import ExchangeLinkView, ExchangeLinkEditView, ExchangeLinkDeleteView
 from .navitem_view import NavItemView, NavItemEditView, NavItemDeleteView
+from .code_view import CodeView, CodeEditView, CodeDeleteView
 
 
 app_name = "cms"
@@ -45,4 +46,10 @@ urlpatterns = [
 
     path("dashboard/monitor/userip", views.monitor_userip_view, name="monitor_userip_view"),
     path("dashboard/monitor/postview", views.monitor_postview_view, name="monitor_postview_view"),
+
+    path("dashboard/code/manage", views.code_manage_view, name="code_manage_view"),
+    path("dashboard/code/publish", views.code_publish_view, name="code_publish_view"),
+    path("dashboard/code/add", CodeView.as_view(), name="code_add"),
+    path("dashboard/code/edit", CodeEditView.as_view(), name="code_edit"),
+    path("dashboard/code/delete", CodeDeleteView.as_view(), name="code_delete"),
 ]

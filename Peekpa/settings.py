@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.peekpauser',
     'apps.poster',
+    'apps.datacenter',
     'apps.exchangelink',
-    'apps.basefunction', # 新添加的基本功能
+    'apps.basefunction',
 ]
 
 MIDDLEWARE = [
