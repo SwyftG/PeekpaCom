@@ -11,5 +11,12 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
         </li>
+        {% if navitem_list %}
+            {% for navitem in navitem_list %}
+                <li class="nav-item mr-4">
+                    <a class="nav-link {% if request.path == navitem.url_path %}active{% endif %}" href="{{ navitem.url_path }}">{{ navitem.show_name }}</a>
+                </li>
+            {% endfor %}
+        {% endif %}
     </ul>
 </nav>

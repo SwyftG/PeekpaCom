@@ -36,7 +36,7 @@ class TagEditForm(forms.ModelForm, FormMixin):
 
 
 class PostForm(forms.ModelForm, FormMixin):
-    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all())
+    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all(), required=False)
 
     class Meta:
         model = Post
@@ -44,7 +44,7 @@ class PostForm(forms.ModelForm, FormMixin):
 
 
 class PostEditForm(forms.ModelForm, FormMixin):
-    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all())
+    tag_id = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Tag.objects.all(),required=False)
     id = forms.CharField(max_length=100)
     class Meta:
         model = Post

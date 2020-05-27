@@ -18,19 +18,42 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    {% include 'cms/home/home_visit_chat.html' %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% include 'cms/home/home_visit_chat.html' %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% include 'cms/home/home_visit_table.html' %}
+                        </div>
+                    </div>
+                    {% if request.user.is_superuser %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {% include 'cms/home/home_peekpa_config_code.html' %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-sm-6">
-                    {% include 'cms/home/home_advertise.html' %}
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    {% include 'cms/home/home_visit_table.html' %}
-                </div>
-                <div class="col-sm-6">
-                    {% include 'cms/home/home_post_table.html' %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                        {% include 'cms/home/home_advertise.html' %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                        {% include 'cms/home/home_post_table.html' %}
+                        </div>
+                    </div>
+                    {% if request.user.is_superuser %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                            {% include 'cms/home/home_peekpa_config_navitem.html' %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

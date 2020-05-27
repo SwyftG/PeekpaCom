@@ -22,7 +22,6 @@ def login_view(request):
                     request.session.set_expiry(None)
                 else:
                     request.session.set_expiry(0)
-                print("login success")
                 return redirect(reverse('cms:dashboard'))
             else:
                 return restful.unauth(message="账号已经被冻结")

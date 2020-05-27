@@ -12,7 +12,8 @@ from apps.datacenter.models import Code
 from django.core.paginator import Paginator
 from django.conf import settings
 from apps.peekpauser.decorators import peekpa_login_required, peekpa_login_superuser
-from apps.basefunction.global_peekpa import init_peekpa
+from apps.basefunction.global_peekpa import init_peekpa, get_peekpa_item
+from django.conf import settings
 
 # Create your views here.
 
@@ -24,7 +25,12 @@ def cms_login(request):
 @peekpa_login_required
 def cms_dashboard(request):
     init_peekpa()
-    context = {}
+    context = {
+        'peekpa_config_code_list': get_peekpa_item("CODE"),
+        'peekpa_config_navitem_list': get_peekpa_item("NAVITEM"),
+        'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
+        'peekpa_version': settings.PEEKPA_VERSION
+    }
     context.update(get_dashboard_top_data())
     context.update(get_dashboard_visitor_chart())
     context.update(get_dashboard_visitor_ip_table(10))

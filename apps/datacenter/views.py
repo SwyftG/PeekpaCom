@@ -30,4 +30,6 @@ def validate_code(request):
 
 @peekpa_code_required
 def center_home_view(request):
-    return render(request, 'datacenter/home/center_home.html')
+    context = {}
+    context.update(get_navbar_item_homepage())
+    return render(request, 'datacenter/home/center_home.html', context=context)

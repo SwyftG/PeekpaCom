@@ -58,3 +58,8 @@ class DayNumber(models.Model):
     count = models.IntegerField(default=0)
 
 
+# class FeaturePost(models.Model):
+#     title = models.CharField(max_length=30)
+#     description = models.CharField(max_length=100)
+#     detail = models.TextField()
+#     create_time = models.DateTimeField(auto_now_add=True)
