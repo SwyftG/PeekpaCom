@@ -9,11 +9,36 @@
             <p class="h5 border-bottom pb-2 mb-2">『皮爷撸码』公众号</p>
         </div>
     </div>
-    <div class="row ml-1" style="background-color: white; height: 285px;">
-        <div class="col-sm-12 p-0 text-center h-100 pb-2">
-            <img src="{% static 'images/pylm-qrcode.jpg' %}" class="w-80 h-100">
+    <div class="row ml-1" style="background-color: white;">
+        <div class="col-sm-12 p-0 text-center pb-2">
+            <img src="{% static 'images/pylm-qrcode.png' %}" class="img-fluid">
         </div>
     </div>
+
+     {% if feature_post %}
+        <!-- 新发布 -->
+        <div class="row ml-1 mt-4" style="background-color: white">
+            <div class="col-sm-12 mt-4">
+                <p class="h5 border-bottom pb-2 mb-2 ml-1 pl-0 mr-1 pr-0">公告</p>
+            </div>
+        </div>
+        <!-- 文章列表 -->
+        <div class="row ml-1" style="background-color: white">
+            <ul class="col-sm-12 d-block">
+                {% for feature in feature_post %}
+                    <!-- 列表内容 -->
+                    <li class="row mt-2 mb-2 ml-0 pl-1 mr-0 pr-1">
+                        <div class="col-sm-12 d-flex justify-content-between pl-0 pr-0">
+                            <p class="mb-0">{{ feature.title }}</p>
+                            <p class="mb-0 small text-secondary">{{ feature.create_time | datapicker_format }}</p>
+                        </div>
+                        <div class="col-sm-12 pl-0 pr-0"><p class="text-muted small mb-0">{{ feature.description }}</p></div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    {% endif %}
 
     {% if read_post %}
         <!-- 文章板块 -->

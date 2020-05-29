@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from apps.poster.models import Post
-from apps.base.common_view import get_exchange_link, get_read_most_post, get_navbar_item_homepage
+from apps.base.common_view import get_exchange_link, get_read_most_post, get_navbar_item_homepage, get_feature_post_post
 from apps.base.tracking_view import peekpa_tracking
 # Create your views here.
 
@@ -16,4 +16,5 @@ def index(request):
     context.update(get_read_most_post())
     context.update(get_exchange_link())
     context.update(get_navbar_item_homepage())
+    context.update(get_feature_post_post())
     return render(request, 'post/index.html', context=context)

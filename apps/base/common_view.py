@@ -1,6 +1,6 @@
 from apps.poster.models import Post
 from apps.exchangelink.models import ExchangeLink
-from apps.basefunction.models import NavbarItem
+from apps.basefunction.models import NavbarItem, FeaturePost
 
 
 def get_read_most_post():
@@ -25,5 +25,15 @@ def get_navbar_item_homepage():
     navitem = NavbarItem.objects.filter(status=NavbarItem.STATUS_NORMAL, show_page=NavbarItem.SHOW_PAGE_HOMEPAGE)
     context = {
         'navitem_list': navitem
+    }
+    return context
+
+
+def get_feature_post_post():
+    feature_post = FeaturePost.objects.filter(status=FeaturePost.STATUS_NORMAL).order_by('-create_time')
+    if len(feature_post) > 5:
+        feature_post = feature_post[:5]
+    context = {
+        'feature_post': feature_post
     }
     return context

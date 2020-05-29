@@ -58,8 +58,18 @@ class DayNumber(models.Model):
     count = models.IntegerField(default=0)
 
 
-# class FeaturePost(models.Model):
-#     title = models.CharField(max_length=30)
-#     description = models.CharField(max_length=100)
-#     detail = models.TextField()
-#     create_time = models.DateTimeField(auto_now_add=True)
+class FeaturePost(models.Model):
+    STATUS_NORMAL = 1
+    STATUS_DELETE = 0
+    STATUS_DRAFT = 2
+    STATUS_ITEMS = (
+        (STATUS_NORMAL, '正常'),
+        (STATUS_DELETE, '删除'),
+        (STATUS_DRAFT, '草稿'),
+    )
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+    url_path = models.CharField(max_length=100, blank=True, null=True)
+    detail = models.TextField(blank=True, null=True)
+    create_time = models.DateTimeField(auto_now_add=True)
+    status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS)

@@ -56,6 +56,6 @@ class Post(models.Model):
             self.content_html = mistune.markdown(self.content)
         else:
             self.content_html = self.content
-        if self.time_id is None or len(self.time_id) == 0:
+        if not self.time_id or len(self.time_id) == 0:
             self.time_id = self.publish_time_show.strftime("%Y%m%d%H%M")
         super().save(*args, **kwargs)

@@ -7,6 +7,7 @@ from .exchangelink_view import ExchangeLinkView, ExchangeLinkEditView, ExchangeL
 from .navitem_view import NavItemView, NavItemEditView, NavItemDeleteView
 from .code_view import CodeView, CodeEditView, CodeDeleteView
 from .user_view import UserView, UserDeleteView
+from .feature_view import FeatureView, FeatureEditView, FeatureDeleteView
 
 
 app_name = "cms"
@@ -58,4 +59,13 @@ urlpatterns = [
     path("dashboard/user/publish", views.user_publish_view, name="user_publish_view"),
     path("dashboard/user/add", UserView.as_view(), name="user_add"),
     path("dashboard/user/delete", UserDeleteView.as_view(), name="user_delete"),
+
+    path("dashboard/inputcode/manage", views.data_center_inputcode_manage_view, name="data_center_inputcode_manage_view"),
+    path("dashboard/inputcode/modify", views.data_center_inputcode_modify_view, name="data_center_inputcode_modify"),
+
+    path("dashboard/feature/manage", views.feature_manage_view, name="feature_manage_view"),
+    path("dashboard/feature/publish", views.feature_publish_view, name="feature_publish_view"),
+    path("dashboard/feature/add", FeatureView.as_view(), name="feature_add"),
+    path("dashboard/feature/edit", FeatureEditView.as_view(), name="feature_edit"),
+    path("dashboard/feature/delete", FeatureDeleteView.as_view(), name="feature_delete"),
 ]

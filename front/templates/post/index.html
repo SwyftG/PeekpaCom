@@ -42,7 +42,7 @@ Peekpa
                         <div class="col-sm-4 pl-0 pr-1 position-relative h-100">
                             <a href="{% url 'post:detail' time_id=top_post.1.time_id%}" class="w-100 h-100">
                                 <img src="{{ top_post.1.thumbnail }}" class="w-100 h-100">
-                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.9)">
                                     <p class="small m-1 text-light">
                                         {{ top_post.1.title }}
                                     </p>
@@ -55,7 +55,7 @@ Peekpa
                         <div class="col-sm-4 pl-1 pr-1 position-relative h-100">
                             <a href="{% url 'post:detail' time_id=top_post.2.time_id%}" class="w-100 h-100">
                                 <img src="{{ top_post.2.thumbnail }}" class="w-100 h-100">
-                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                <div class="position-absolute mr-1" style="bottom:0;background-color: rgba(58,58,58,0.9)">
                                     <p class="small m-1 text-light">
                                         {{ top_post.2.title }}
                                     </p>
@@ -68,7 +68,7 @@ Peekpa
                         <div class="col-sm-4 pl-1 pr-0 position-relative h-100">
                             <a href="{% url 'post:detail' time_id=top_post.3.time_id%}" class="w-100 h-100">
                                 <img src="{{ top_post.3.thumbnail }}" class="w-100 h-100">
-                                <div class="position-absolute" style="bottom:0;background-color: rgba(58,58,58,0.5)">
+                                <div class="position-absolute" style="bottom:0;background-color: rgba(58,58,58,0.9)">
                                     <p class="small m-1 text-light">
                                         {{ top_post.3.title }}
                                     </p>
@@ -89,7 +89,7 @@ Peekpa
                                 <a href="{% url 'post:detail' time_id=post.time_id %}" class="w-100 h-100">
                                     <img src="{{ post.thumbnail }}" class="w-100 h-100">
                                     <div class="position-absolute mt-3"
-                                         style="top:0;background-color: rgba(32,120,255,0.5)">
+                                         style="top:0;background-color: rgba(32,120,255,0.9)">
                                         <p class="small m-1 text-light">{{ post.category.name }}</p>
                                     </div>
                                 </a>

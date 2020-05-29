@@ -2,13 +2,15 @@ import datetime
 
 from django.shortcuts import render
 from django.utils import timezone
+from django.views.decorators.http import require_POST
+from django.shortcuts import redirect, reverse
 
 from apps.poster.models import Category, Tag, Post
 from apps.basefunction.models import VisitNumber, DayNumber, UserIP
 from apps.exchangelink.models import ExchangeLink
-from apps.basefunction.models import NavbarItem
+from apps.basefunction.models import NavbarItem, FeaturePost
 from apps.peekpauser.models import User
-from apps.datacenter.models import Code
+from apps.datacenter.models import Code, InputCode
 from django.core.paginator import Paginator
 from django.conf import settings
 from apps.peekpauser.decorators import peekpa_login_required, peekpa_login_superuser
@@ -151,6 +153,15 @@ def navitem_manage_view(request):
 
 
 @peekpa_login_required
+def feature_manage_view(request):
+    context = {
+        "list_data": FeaturePost.objects.all(),
+        'list_data_status': FeaturePost.STATUS_ITEMS,
+    }
+    return render(request, 'cms/feature/manage.html', context=context)
+
+
+@peekpa_login_required
 @peekpa_login_superuser
 def code_manage_view(request):
     context = {
@@ -167,6 +178,24 @@ def user_manage_view(request):
         "list_data": User.objects.all(),
     }
     return render(request, 'cms/user/manage.html', context=context)
+
+
+@peekpa_login_required
+@peekpa_login_superuser
+def data_center_inputcode_manage_view(request):
+    context = {
+        "item_data": InputCode.objects.get_or_create(id=1)[0],
+    }
+    return render(request, 'cms/datacenter/input_code.html', context=context)
+
+
+@peekpa_login_required
+@peekpa_login_superuser
+@require_POST
+def data_center_inputcode_modify_view(request):
+    name = request.POST.get('name')
+    InputCode.objects.filter(id=1).update(name=name)
+    return redirect(reverse('cms:data_center_inputcode_manage_view'))
 
 
 @peekpa_login_required
@@ -209,6 +238,14 @@ def navitem_publish_view(request):
         'list_data_show_page': NavbarItem.SHOW_PAGE_ITEMS,
     }
     return render(request, 'cms/navitem/publish.html', context=context)
+
+
+@peekpa_login_required
+def feature_publish_view(request):
+    context = {
+        'list_data_status': FeaturePost.STATUS_ITEMS,
+    }
+    return render(request, 'cms/feature/publish.html', context=context)
 
 
 @peekpa_login_required

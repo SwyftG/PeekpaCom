@@ -4,10 +4,12 @@ from apps.base.forms import FormMixin
 from django.core.cache import cache
 from .models import User
 
+
 class LoginForm(forms.Form, FormMixin):
-    email = forms.CharField(max_length=11)
+    email = forms.CharField(max_length=50)
     password = forms.CharField(max_length=20, min_length=6, error_messages={"max_length":"面最多不能超过20字符", "min_length":"密码最少不得少于6个字符"})
     remember = forms.IntegerField(required=False)
+
 
 class RegisterForm(forms.Form, FormMixin):
     telephone = forms.CharField(max_length=11)

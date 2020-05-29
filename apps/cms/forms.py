@@ -2,9 +2,8 @@ from django import forms
 from apps.base.forms import FormMixin
 from apps.poster.models import Category, Tag, Post
 from apps.exchangelink.models import ExchangeLink
-from apps.basefunction.models import NavbarItem
+from apps.basefunction.models import NavbarItem, FeaturePost
 from apps.datacenter.models import Code
-from apps.peekpauser.models import User
 
 
 class CategoryForm(forms.ModelForm, FormMixin):
@@ -100,11 +99,24 @@ class UserForm(forms.Form, FormMixin):
                                 error_messages={"max_length": "面最多不能超过20字符", "min_length": "密码最少不得少于6个字符"})
 
 
-
 class UserEditForm(forms.ModelForm, FormMixin):
     pk = forms.CharField(max_length=100)
 
     class Meta:
         model = Code
         exclude = ('visit_num',)
+
+
+class FeatureForm(forms.ModelForm, FormMixin):
+    class Meta:
+        model = FeaturePost
+        fields = "__all__"
+
+
+class FeatureEditForm(forms.ModelForm, FormMixin):
+    pk = forms.CharField(max_length=100)
+
+    class Meta:
+        model = FeaturePost
+        fields = "__all__"
 

@@ -25,6 +25,31 @@
                         </p>
                     </a>
                 </li>
+                {% url 'cms:feature_manage_view' as feature_manage_view %}
+                {% url 'cms:feature_publish_view' as feature_publish_view %}
+                <li class="nav-item has-treeview {% if request.path == feature_manage_view or request.path == feature_publish_view %}menu-open{% endif %}">
+                    <a href="#" class="nav-link {% if request.path == feature_manage_view or request.path == feature_publish_view %}active{% endif %}">
+                      <i class="nav-icon fas fa-glass-cheers"></i>
+                      <p>
+                        Feature News
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{% url 'cms:feature_manage_view' %}" class="nav-link {% if request.path == feature_manage_view %}active{% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Management</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cms:feature_publish_view' %}" class="nav-link {% if request.path == feature_publish_view %}active{% endif %}">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Publish</p>
+                        </a>
+                      </li>
+                    </ul>
+                </li>
                 {% url 'cms:post_manage_view' as post_manage_view %}
                 {% url 'cms:post_publish_view' as post_publish_view %}
                 <li class="nav-item has-treeview {% if request.path == post_manage_view or request.path == post_publish_view %}menu-open{% endif %}">
@@ -172,6 +197,24 @@
                             <a href="{% url 'cms:code_publish_view' %}" class="nav-link {% if request.path == code_publish_view %}active{% endif %}">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Publish</p>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
+                    {% url 'cms:data_center_inputcode_manage_view' as data_center_inputcode_manage_view %}
+                    <li class="nav-item has-treeview {% if request.path == data_center_inputcode_manage_view %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == data_center_inputcode_manage_view %}active{% endif %}">
+                          <i class="nav-icon fas fa-database"></i>
+                          <p>
+                            DataCenter
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="{% url 'cms:data_center_inputcode_manage_view' %}" class="nav-link {% if request.path == data_center_inputcode_manage_view %}active{% endif %}">
+                              <i class="fas fa-terminal nav-icon"></i>
+                              <p>Input Code Management</p>
                             </a>
                           </li>
                         </ul>

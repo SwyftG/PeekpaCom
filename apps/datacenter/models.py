@@ -19,3 +19,8 @@ class Code(models.Model):
     visit_num = models.PositiveIntegerField(default=0, auto_created=True)
     status = models.PositiveIntegerField(default=STATUS_DRAFT, choices=STATUS_ITEMS)
     create_time = models.DateTimeField(auto_now_add=True)
+
+
+class InputCode(models.Model):
+    name = models.CharField(max_length=20)
+

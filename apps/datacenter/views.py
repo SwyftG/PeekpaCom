@@ -5,12 +5,18 @@ from apps.base.common_view import get_navbar_item_homepage
 from .decorators import peekpa_code_required
 from apps.basefunction.global_peekpa import get_code_session
 from apps.basefunction.decorators import peekpa_url_check
+from .models import InputCode
 
 
 @peekpa_url_check
 def input_code_view(request):
+    item = InputCode.objects.get_or_create(id=1)
+    if item[1]:
+        code = "代码"
+    else:
+        code = item[0].name
     context = {
-        'code': '代码',
+        'code': code
     }
     context.update(get_navbar_item_homepage())
     return render(request, 'datacenter/input_code.html', context=context)

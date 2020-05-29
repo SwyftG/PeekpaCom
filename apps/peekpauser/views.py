@@ -27,7 +27,7 @@ def login_view(request):
                 return restful.unauth(message="账号已经被冻结")
         else:
             # return restful_response.params_error(message="手机或者密码错误")
-            return redirect(reverse('index'))
+            return redirect(reverse('cms:login'))
     else:
         errors = form.get_errors()
         return restful.params_error(message=errors)
