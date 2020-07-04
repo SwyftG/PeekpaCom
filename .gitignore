@@ -10,5 +10,6 @@
 
 /front/package-lock.json
 
+celerybeat-schedule.db
 
 
