@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .jpearth_view import JpEarthView
 
 app_name = "center"
 
@@ -8,4 +9,6 @@ urlpatterns = [
     path("validate/", views.validate_code, name="center_validate_code"),
 
     path("center/", views.center_home_view, name="center_center_home_view"),
+
+    path('jpearth/', JpEarthView.as_view(), name="jpearth_list_view"),
 ]

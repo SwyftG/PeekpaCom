@@ -16,7 +16,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                {% url 'cms:dashboard' as cms_home_page %}
+                {% url '#' as cms_home_page %}
                 <li class="nav-item">
                     <a href="{{ cms_home_page }}" class="nav-link {% if request.path == cms_home_page %}active{% endif %}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -25,27 +25,20 @@
                         </p>
                     </a>
                 </li>
-                {% url 'cms:post_manage_view' as post_manage_view %}
-                {% url 'cms:post_publish_view' as post_publish_view %}
-                <li class="nav-item has-treeview {% if request.path == post_manage_view or request.path == post_publish_view %}menu-open{% endif %}">
-                    <a href="{{ post_manage_view }}" class="nav-link {% if request.path == post_manage_view or request.path == post_publish_view %}active{% endif %}">
+                {% url 'center:jpearth_list_view' as jpearth_manage_view %}
+                <li class="nav-item has-treeview {% if request.path == jpearth_manage_view %}menu-open{% endif %}">
+                    <a href="{{ jpearth_manage_view }}" class="nav-link {% if request.path == jpearth_manage_view %}active{% endif %}">
                       <i class="nav-icon far fa-copy"></i>
                       <p>
-                        Post
+                        日本地震信息
                         <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ post_manage_view }}" class="nav-link {% if request.path == post_manage_view %}active{% endif %}">
+                        <a href="{{ jpearth_manage_view }}" class="nav-link {% if request.path == jpearth_manage_view %}active{% endif %}">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Management</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{{ post_publish_view }}" class="nav-link {% if request.path == post_publish_view %}active{% endif %}">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Publish</p>
+                          <p>MongoDB 数据源</p>
                         </a>
                       </li>
                     </ul>
