@@ -2,7 +2,6 @@
 {% load post_filters %}
 
 {% block head %}
-    <script src="{% static 'js/caoliu_manage.min.js' %}"></script>
     <meta name="referrer" content="none">
 {% endblock %}
 
@@ -22,16 +21,6 @@
                                 <p class="h3">Avgle</p>
                                 <form action="" method="get" class="form-inline ml-auto">
                                     <input type="text" value="{{ cur_fid }}" name="fid" hidden>
-                                    <div class="form-group mr-4">
-                                        <label for="">时间：</label>
-                                        {% if select_time %}
-                                            <input type="text" class="form-control" name="day" id="start-picker"
-                                                   readonly value="{{ select_time }}">
-                                        {% else %}
-                                            <input type="text" class="form-control" name="day" id="start-picker"
-                                                   readonly>
-                                        {% endif %}
-                                    </div>
                                     <div class="form-group mr-4">
                                         <label for="title-input">标题：</label>
                                         {% if title %}
