@@ -49,7 +49,38 @@ class JpEarthView(View):
             # result = self.collection.find({},{'jp_title':False, 'jp_location':False})
 
             # find_one()单个数据搜索
-            #result = self.collection.find_one({"jp_location":"福島県沖"})
+            # result = self.collection.find_one({"jp_location":"福島県沖"})
+
+            # 修改单一数据，并且全部将数据替换
+            # self.collection.update({"jp_location": "千葉県東方沖"}, {"jp_location": "千葉県東方沖update"})
+
+            # 修改单一数据，只替换需要修改的变量值
+            # self.collection.update({"jp_location": "千葉県東方沖"}, {'$set': {"jp_location": "千葉県東方沖update2"}})
+
+            # 修改单一数据，只替换需要修改的变量值
+            # self.collection.update_one({"jp_location": "千葉県東方沖"}, {'$set': {"jp_location": "千葉県東方沖update3"}})
+
+            # 修改全部符合条件的数据，只替换需要修改的变量值
+            # self.collection.update_many({"jp_location": "千葉県東方沖"}, {'$set': {"jp_location": "千葉県東方沖update4"}})
+
+            # 直接删除collection
+            # self.collection.drop()
+
+            # 指定删除符合条件的数据
+            # self.collection.remove()
+
+            # 删除符合条件的第一条数据
+            # self.collection.delete_one()
+
+            # 删除符合条件的所有数据
+            # self.collection.delete_many()
+
+            # and 的关系，找到满足所有条件的数据，结果1条数据
+            # result = self.collection.find({'$and': [{'jp_location': '長野県中部'}, {'jp_id': '2020070303245039503122131'}]})
+
+            # or 的关系，找到符合条件的数据，结果10条数据
+            # result = self.collection.find({'$and': [{'jp_location': '長野県中部'}, {'jp_id': {'$exists': True}}]})
+
         else:
             # 通过地址(jp_location) 精确查找
             #result = self.collection.find({"jp_location": search_key})

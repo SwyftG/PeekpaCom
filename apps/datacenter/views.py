@@ -25,8 +25,19 @@ def input_code_view(request):
 @require_POST
 def validate_code(request):
     code = request.POST.get('form-code')
-    session_name, session_uid = get_code_session(code)
-    if session_uid and session_name:
+    # 注释掉的是正式数据，测试数据，直接写死，密码验证为 peekpa 即放行
+    # session_name, session_uid = get_code_session(code)
+    # if session_uid and session_name:
+    #     request.session[session_name] = session_uid
+    #     request.session.set_expiry(0)
+    #     return redirect(reverse("center:center_center_home_view"))
+    # else:
+    #     return redirect(reverse("center:center_input_code"))
+
+
+    if code == "peekpa":
+        session_name = "peekpa_session_name"
+        session_uid = "peekpa_session_uid"
         request.session[session_name] = session_uid
         request.session.set_expiry(0)
         return redirect(reverse("center:center_center_home_view"))
