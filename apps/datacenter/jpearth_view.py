@@ -2,10 +2,13 @@ import ssl
 import pymongo
 from django.views.generic import View
 from django.shortcuts import render
+
+from apps.base.redis_cache import get_data_from_cache
 from .decorators import peekpa_code_required
 from django.utils.decorators import method_decorator
 from apps.base.tracking_view import peekpa_tracking
 from django.core.paginator import Paginator
+from django.core.cache import cache
 
 
 @method_decorator(peekpa_code_required, name='get')
@@ -22,18 +25,23 @@ class JpEarthView(View):
     def get(self, request):
         page = int(request.GET.get('p', 1))
         handle_type, search_key = self.process_paramter(request)
-        list_data = self.get_data_from_db(handle_type, search_key)
+        # list_data = self.get_data_from_db(handle_type, search_key)
+
+        # 封装置后的数据缓存数据处理方法在这里
+        from_cache, list_data = get_data_from_cache(request, self.get_data_from_db, handle_type=handle_type, search_key=search_key)
+
         paginator = Paginator(list(list_data), 15)
         page_obj = paginator.page(page)
         context = {
             "list_data": page_obj.object_list,
+            "from_cache": from_cache
         }
         context.update(self.get_pagination_data(paginator, page_obj))
         return render(request, 'datacenter/jpearth/manage.html', context=context);
 
     def get_data_from_db(self, handle_type, search_key):
         if handle_type == self.TYPE_ALL:
-            # 搜索全部结果
+             # 搜索全部结果
             result = self.collection.find()
 
             # 降序排列
@@ -80,6 +88,12 @@ class JpEarthView(View):
 
             # or 的关系，找到符合条件的数据，结果10条数据
             # result = self.collection.find({'$and': [{'jp_location': '長野県中部'}, {'jp_id': {'$exists': True}}]})
+
+            # # 增加缓存
+            # result = cache.get("jpEarth")
+            # if not result:
+            #     result = list(self.collection.find())
+            #     cache.set("jpEarth", result, 60)
 
         else:
             # 通过地址(jp_location) 精确查找

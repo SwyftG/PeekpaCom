@@ -33,13 +33,15 @@ def init_peekpa_config():
 
 
 def check_code_session_by(session):
-    if "CODE" in peekpa_config:
-        for item in peekpa_config["CODE"]:
-            if session[item.session_name]:
-                if session[item.session_name] == item.session_uid:
-                    Code.objects.filter(uid=item.uid).update(visit_num=F('visit_num') + 1)
-                    return True
-    return False
+    # TODO 为了测试，这里直接写死返回True，需要判断的时候，可以将代码修改回来
+    # if "CODE" in peekpa_config:
+    #     for item in peekpa_config["CODE"]:
+    #         if session[item.session_name]:
+    #             if session[item.session_name] == item.session_uid:
+    #                 Code.objects.filter(uid=item.uid).update(visit_num=F('visit_num') + 1)
+    #                 return True
+    # return False
+    return True
 
 
 def check_url(request):

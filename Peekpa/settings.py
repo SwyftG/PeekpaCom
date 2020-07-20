@@ -80,6 +80,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Peekpa.wsgi.application'
 
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",    #redis的地址
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100}  #池的个数
+        }
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
