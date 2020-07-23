@@ -68,4 +68,8 @@ urlpatterns = [
     path("dashboard/feature/add", FeatureView.as_view(), name="feature_add"),
     path("dashboard/feature/edit", FeatureEditView.as_view(), name="feature_edit"),
     path("dashboard/feature/delete", FeatureDeleteView.as_view(), name="feature_delete"),
+
+    path("dashboard/cache/manage", views.cache_manage_view, name="cache_manage_view"),
+    path("dashboard/cache/delete", views.cache_delete_item_view, name="cache_item_clear"),
+    path("dashboard/cache/deleteall", views.cache_clear_view, name="cache_clear"),
 ]

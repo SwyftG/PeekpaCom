@@ -1,0 +1,55 @@
+{% extends 'cms/base/dashboard_base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}
+    Cache Management
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <div class="container-fluid pt-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row p-2 d-flex justify-content-between">
+                                <p class="h3">Cache Management</p>
+                                <div class="float-right">
+                                    <a class="btn btn-danger text-right" href="{% url 'cms:cache_clear' %}"><i class="mr-2 fas fa-plus"></i>Clear All</a>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Key</th>
+                                        <th>Ttl</th>
+                                        <th width="25%">actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in list_data %}
+                                        <tr>
+                                            <td>{{ item.key }}</td>
+                                            <td>{{ item.ttl }}</td>
+                                            <td>
+                                                <a href="{% url 'cms:cache_item_clear' %}?cache_key={{ item.key }}" class="btn btn-danger btn-xs delete-btn">
+                                                    Clear
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

@@ -271,6 +271,27 @@
                       </li>
                     </ul>
                 </li>
+
+                {% url 'cms:cache_manage_view' as cache_manage_view %}
+                <li class="nav-item has-treeview {% if request.path == cache_manage_view %}menu-open{% endif %}">
+                    <a href="#"
+                       class="nav-link {% if request.path == cache_manage_view %}active{% endif %}">
+                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                        <p>
+                            Website Cache
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'cms:cache_manage_view' %}"
+                               class="nav-link {% if request.path == cache_manage_view %}active{% endif %}">
+                                <i class="fas fa-donate nav-icon"></i>
+                                <p>Cache Management</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

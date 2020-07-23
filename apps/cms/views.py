@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect, reverse
 
+from apps.base.redis_cache import get_cache_keys_object
 from apps.poster.models import Category, Tag, Post
 from apps.basefunction.models import VisitNumber, DayNumber, UserIP
 from apps.exchangelink.models import ExchangeLink
@@ -12,7 +13,7 @@ from apps.basefunction.models import NavbarItem, FeaturePost
 from apps.peekpauser.models import User
 from apps.datacenter.models import Code, InputCode
 from django.core.paginator import Paginator
-from django.conf import settings
+from django.core.cache import cache
 from apps.peekpauser.decorators import peekpa_login_required, peekpa_login_superuser
 from apps.basefunction.global_peekpa import init_peekpa, get_peekpa_item
 from django.conf import settings
@@ -354,4 +355,30 @@ def get_dashboard_post_view_table(max_num):
         'post_view_table_list': post_view_table_list,
     }
     return context
+
+
+@peekpa_login_required
+def cache_manage_view(request):
+    cache_item_list = get_cache_keys_object()
+    context = {
+        "list_data": cache_item_list,
+    }
+    return render(request, 'cms/cache/manage.html', context=context)
+
+
+@peekpa_login_required
+def cache_clear_view(request):
+    cache_item_list = get_cache_keys_object()
+    for item in cache_item_list:
+        if 'django' not in item['key']:
+            cache.delete(item['key'])
+    return redirect(reverse('cms:cache_manage_view'))
+
+
+@peekpa_login_required
+def cache_delete_item_view(request):
+    cache_key = request.GET.get('cache_key')
+    if cache_key:
+        cache.delete(cache_key)
+    return redirect(reverse('cms:cache_manage_view'))
 
