@@ -13,3 +13,5 @@
 celerybeat-schedule.db
 
 
+celerybeat.pid
+

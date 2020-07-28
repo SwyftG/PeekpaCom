@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from datetime import timedelta
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -170,3 +172,25 @@ ONE_PAGE_NEWS_COUNT = 10
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_dist')
 
 PEEKPA_VERSION = "00.01.00"
+
+
+# 以下为邮箱配置
+EMAIL_HOST = "smtp.126.com"  # 发送邮件的smtp服务器（从QQ邮箱中取得）
+EMAIL_HOST_USER = "xxxxx@126.com"  # 用于登录smtp服务器的用户名，也就是发送者的邮箱
+EMAIL_HOST_PASSWORD = "xxxxxx"  # 授权码，和用户名user一起，用于登录smtp， 非邮箱密码
+EMAIL_PORT = 465  # smtp服务器SSL端口号，默认是465
+EMAIL_USE_SSL = True
+
+# CELERY
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERY_BEAT_SCHEDULE = {
+    'webspider_start_jp_earch': {
+        'task': 'apps.datacenter.tasks.webspider_start_peekpa',
+        'schedule': timedelta(seconds=10)
+    },
+}

@@ -58,6 +58,11 @@
                                         <div class="row col-sm-12">
                                             <small>{{ item.jp_max_level }}</small>
                                         </div>
+                                        <div>
+                                            {% if item.jp_id %}
+                                            <a class="btn btn-primary badge" href="{% url 'center:jpearth_send_view' jp_id=item.jp_id %}">发送详情</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 {% endfor %}
                             </div>

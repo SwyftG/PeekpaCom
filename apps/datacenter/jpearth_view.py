@@ -1,7 +1,8 @@
 import ssl
 import pymongo
+from django.core.mail import send_mail
 from django.views.generic import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 
 from apps.base.redis_cache import get_data_from_cache
 from .decorators import peekpa_code_required
@@ -9,6 +10,7 @@ from django.utils.decorators import method_decorator
 from apps.base.tracking_view import peekpa_tracking
 from django.core.paginator import Paginator
 from django.core.cache import cache
+from .tasks import send_peekpa_email
 
 
 @method_decorator(peekpa_code_required, name='get')
@@ -136,3 +138,19 @@ class JpEarthView(View):
         search_key = request.GET.get('search')
         handle_type = self.TYPE_ALL if search_key is None else self.TYPE_SEARCH
         return handle_type, search_key
+
+
+class JpEarthSendView(View):
+    client = pymongo.MongoClient(
+        "mongodb+srv://peekpa-user:peekpa2020@peekpa.ofyco.mongodb.net/Peekpa?retryWrites=true&w=majority",
+        ssl_cert_reqs=ssl.CERT_NONE)
+    db = client['PeekpaMongoData']
+    collection = db['JpEarth']
+
+    def get(self, request, jp_id):
+        jp_item = self.collection.find_one({"jp_id": jp_id})
+        # self.send_jpearch_email(jp_item)
+        jp_item.pop("_id")
+        send_peekpa_email.delay(jp_item)
+
+        return redirect(reverse('center:jpearth_list_view'))
