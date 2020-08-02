@@ -3,6 +3,7 @@ import pymongo
 from django.core.mail import send_mail
 from django.views.generic import View
 from django.shortcuts import render, redirect, reverse
+from ratelimit.decorators import ratelimit
 
 from apps.base.redis_cache import get_data_from_cache
 from .decorators import peekpa_code_required
@@ -13,6 +14,7 @@ from django.core.cache import cache
 from .tasks import send_peekpa_email
 
 
+# @method_decorator(ratelimit(key='ip', rate='2/10m', block=True), name='get')
 @method_decorator(peekpa_code_required, name='get')
 @method_decorator(peekpa_tracking, name='get')
 class JpEarthView(View):

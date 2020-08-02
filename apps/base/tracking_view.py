@@ -1,11 +1,17 @@
 from django.utils import timezone
 from django .db .models import F
+from ratelimit.core import get_usage, is_ratelimited
+from ratelimit.exceptions import Ratelimited
 
 from apps.basefunction.models import UserIP, VisitNumber, DayNumber
 
 
 def peekpa_tracking(func):
     def wrapper(request, *args, **kwargs):
+        block_info = get_usage(request, key="ip", fn=func, rate="2/10s", increment=True)
+        print("Block_info: {}".format(block_info))
+        if block_info['should_limit']:
+            raise Ratelimited()
         tacking_info(request)
         return func(request, *args, **kwargs)
     return wrapper
