@@ -9,7 +9,9 @@ peekpa_config = {
 
 
 def init_peekpa():
+    print("peekpa_init_start")
     init_peekpa_config()
+    print("peekpa_init_end")
 
 
 def get_peekpa_item(name):
