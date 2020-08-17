@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.datacenter',
     'apps.exchangelink',
     'apps.basefunction',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

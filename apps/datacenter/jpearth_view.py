@@ -41,7 +41,7 @@ class JpEarthView(View):
             "from_cache": from_cache
         }
         context.update(self.get_pagination_data(paginator, page_obj))
-        return render(request, 'datacenter/jpearth/manage.html', context=context);
+        return render(request, 'datacenter/jpearth/manage.html', context=context)
 
     def get_data_from_db(self, handle_type, search_key):
         if handle_type == self.TYPE_ALL:

@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .jpearth_view import JpEarthView, JpEarthSendView
+from .center_api_view import CenterApiView
 
 app_name = "center"
 
@@ -12,4 +13,6 @@ urlpatterns = [
 
     path('jpearth/', JpEarthView.as_view(), name="jpearth_list_view"),
     path('jpearth/Send/<str:jp_id>', JpEarthSendView.as_view(), name="jpearth_send_view"),
+
+    path('center/data/', CenterApiView.as_view(), name="jpearth_api_view"),
 ]
