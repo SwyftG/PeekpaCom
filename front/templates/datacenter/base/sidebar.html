@@ -16,7 +16,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                {% url '#' as cms_home_page %}
+                {% url 'center:center_center_home_view' as cms_home_page %}
                 <li class="nav-item">
                     <a href="{{ cms_home_page }}" class="nav-link {% if request.path == cms_home_page %}active{% endif %}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
