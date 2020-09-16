@@ -10,15 +10,9 @@ from apps.base.redis_cache import get_data_from_cache
 from django.core.paginator import Paginator
 from .serializers import JpEarthSerializer
 from django.conf import settings
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 
 
-# @method_decorator(permission_classes((IsAuthenticated,)), name='get')
-class CenterApiView(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = (IsAuthenticated,)
+class CenterView(APIView):
     renderer_classes = [JSONRenderer]
     TYPE_ALL = 1
     TYPE_SEARCH = 2
