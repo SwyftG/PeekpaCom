@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import url
 from django.urls import path,include
 from rest_framework.authtoken.views import obtain_auth_token
+from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
@@ -25,5 +27,6 @@ urlpatterns = [
     path('', include('apps.basefunction.urls')),
     path('', include('apps.poster.urls')),
     path('', include('apps.datacenter.urls')),
-    path('api-token/', obtain_auth_token)
+    path('api-token/', obtain_auth_token),
+    url(r'^favicon\.ico$', RedirectView.as_view(url=r'static/images/favicon.ico')),
 ]

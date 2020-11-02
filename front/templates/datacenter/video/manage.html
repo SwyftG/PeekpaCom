@@ -1,0 +1,63 @@
+{% extends 'datacenter/base/center_base.html' %}
+{% load post_filters %}
+
+{% block head %}
+    <script src="{% static 'js/center_manage.min.js' %}"></script>
+    <meta name="referrer" content="none">
+{% endblock %}
+
+{% block title %}
+    Post Management
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <div class="container-fluid pt-4">
+            {% include 'base/loading.html' %}
+            <div class="row" id="content-block">
+
+            </div>
+
+        </div>
+    </section>
+
+    <script id="data-list" type="text/html">
+    {% verbatim %}
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="p-2 d-flex">
+                        <p class="h3">{{ data.cur_fid_name }}区</p>
+                        <div class="form-inline ml-auto">
+                            <h4 class="pl-3">每小时实时更新，上次更新时间为<span class="text-danger">{{ data.update_time }}</span>的数据</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        {{ each data.list_data item }}
+                            <div class="col-sm-2 p-0">
+                                <div class="col-sm-12 " style="height: 200px;" title="{{ item.title }}">
+                                    <video muted class="w-100 h-100" controls autoplay loop>
+                                      <source src="{{ item.preview_video_url }}" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="col-sm-12">
+                                    <a href="{{ item.video_url }}" target="_blank">
+                                        <p class="h6" title="{{ item.title }}">{{ item.title.substring(0, 45)}}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        {{ /each }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endverbatim %}
+    </script>
+
+
+
+{% endblock %}

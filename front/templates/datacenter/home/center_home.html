@@ -1,11 +1,12 @@
 {% extends 'datacenter/base/center_base.html' %}
 
 {% block title %}
-    Home
+    DataCenter Home
 {% endblock %}
 
 {% block head %}
-
+    <script src="{% static 'js/center_home.min.js' %}"></script>
+    <meta name="referrer" content="never">
 {% endblock %}
 
 {% block main %}
@@ -14,7 +15,26 @@
     <section class="content">
         <div class="container-fluid pt-4">
 
-            Center Home
+            {% include 'base/loading.html' %}
+
+            {% include 'datacenter/home/home_top.html' %}
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12" id="row-1-left">
+                            {% include 'datacenter/home/home_caoliu_post_chat.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12" id="row-1-right">
+                            {% include 'datacenter/home/home_javpop_post_chat.html' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>

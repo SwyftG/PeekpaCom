@@ -276,7 +276,11 @@ def get_dashboard_top_data():
             if user_ip_item.ip_address not in day_visit_ip_set:
                 day_visit_ip_set.add(user_ip_item.ip_address)
     day_visit_ip_num = len(day_visit_ip_set)
-    day_visit_num = DayNumber.objects.filter(day=timezone.now().date())[0].count
+    day_visit_num_db = DayNumber.objects.filter(day=timezone.now().date())
+    if len(day_visit_num_db) > 0:
+        day_visit_num = DayNumber.objects.filter(day=timezone.now().date())[0].count
+    else:
+        day_visit_num = 0
     total_visit_num = VisitNumber.objects.filter(id=1)[0].count
     context = {
         "post_num": post_num,

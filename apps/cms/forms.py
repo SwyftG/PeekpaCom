@@ -98,13 +98,12 @@ class UserForm(forms.Form, FormMixin):
     password = forms.CharField(max_length=20, min_length=6,
                                 error_messages={"max_length": "面最多不能超过20字符", "min_length": "密码最少不得少于6个字符"})
 
-
-class UserEditForm(forms.ModelForm, FormMixin):
-    pk = forms.CharField(max_length=100)
-
-    class Meta:
-        model = Code
-        exclude = ('visit_num',)
+class UserEditForm(forms.Form, FormMixin):
+    pk = forms.CharField(max_length=30)
+    username = forms.CharField(max_length=20)
+    email = forms.EmailField()
+    password = forms.CharField(max_length=20, min_length=6,
+                                error_messages={"max_length": "面最多不能超过20字符", "min_length": "密码最少不得少于6个字符"})
 
 
 class FeatureForm(forms.ModelForm, FormMixin):

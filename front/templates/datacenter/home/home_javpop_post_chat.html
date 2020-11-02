@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title text-danger text-bold text-lg">今日电影统计</h3>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex">
+            <p class="d-flex flex-column">
+                <span class="text-bold text-lg text-info">{{ today_day_time  }}</span>
+            </p>
+            <p class="ml-auto d-flex flex-column text-right">
+            <span class="text-bold text-success">
+              总共新添加了<span class="text-danger text-lg">{{ today_javpop_total_new_number }}</span>部
+            </span>
+            </p>
+        </div>
+
+        <div class="position-relative mb-4">
+          <canvas id="jav-post-chart" height="200"></canvas>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+          <span class="mr-2">
+            <i class="fas fa-square text-primary"></i> 今天
+          </span>
+
+          <span>
+            <i class="fas fa-square text-gray"></i> 昨天
+          </span>
+        </div>
+    </div>
+</div>

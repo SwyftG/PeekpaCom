@@ -6,7 +6,7 @@ from .post_view import PostView, PostEditView, PostDeleteView
 from .exchangelink_view import ExchangeLinkView, ExchangeLinkEditView, ExchangeLinkDeleteView
 from .navitem_view import NavItemView, NavItemEditView, NavItemDeleteView
 from .code_view import CodeView, CodeEditView, CodeDeleteView
-from .user_view import UserView, UserDeleteView
+from .user_view import UserView, UserDeleteView, UserEditView
 from .feature_view import FeatureView, FeatureEditView, FeatureDeleteView
 
 
@@ -57,6 +57,7 @@ urlpatterns = [
 
     path("dashboard/user/manage", views.user_manage_view, name="user_manage_view"),
     path("dashboard/user/publish", views.user_publish_view, name="user_publish_view"),
+    path("dashboard/user/edit", UserEditView.as_view(), name="user_edit_view"),
     path("dashboard/user/add", UserView.as_view(), name="user_add"),
     path("dashboard/user/delete", UserDeleteView.as_view(), name="user_delete"),
 

@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "127.0.0.1:3307:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-connect='SET NAMES utf8mb4;' --innodb-flush-log-at-trx-commit=0
+    environment:
+      - MYSQL_DATABASE=peekpa_db1
+      - MYSQL_USER=peekpa
+      - MYSQL_ROOT_PASSWORD=Peekpa2020
+      - MYSQL_PASSWORD=Peekpa2020
+      - TZ='Asia/Shanghai'
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    expose:
+      - "3306"
+    volumes:
+      - ./db:/var/lib/mysql
+
+  redis:
+    image: redis:6
+    volumes:
+      - ./redis:/data #给redis数据备份
+    expose:
+      - "6379"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8081:8000" # 容器的8000端口和主机8081端口绑定；这里因为我们没有备案域名，所以端口改成8081
+    depends_on:
+      - db
+      - redis

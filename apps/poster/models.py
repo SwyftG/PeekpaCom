@@ -1,6 +1,7 @@
+import markdown
 from django.db import models
 import datetime
-import mistune
+import random
 
 # Create your models here.
 
@@ -53,9 +54,19 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if self.is_md:
-            self.content_html = mistune.markdown(self.content)
+            md = markdown.Markdown(
+                extensions=[
+                    # 包含 缩写、表格等常用扩展
+                    'markdown.extensions.extra',
+                    # 语法高亮扩展
+                    'markdown.extensions.codehilite',
+                    # 目录扩展
+                    'markdown.extensions.toc',
+                ]
+            )
+            self.content_html = md.convert(self.content)
         else:
             self.content_html = self.content
         if not self.time_id or len(self.time_id) == 0:
-            self.time_id = self.publish_time_show.strftime("%Y%m%d%H%M")
+            self.time_id = self.publish_time_show.strftime("%Y%m%d") + str(random.randrange(999, 10000, 1))
         super().save(*args, **kwargs)

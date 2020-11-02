@@ -5,10 +5,9 @@ from apps.base.common_view import get_navbar_item_homepage
 from .decorators import peekpa_code_required
 from apps.basefunction.global_peekpa import get_code_session
 from apps.basefunction.decorators import peekpa_url_check
+from .sidebar_view import CenterSidebarView
 from .models import InputCode
 
-
-@peekpa_url_check
 def input_code_view(request):
     item = InputCode.objects.get_or_create(id=1)
     if item[1]:
@@ -49,4 +48,6 @@ def validate_code(request):
 def center_home_view(request):
     context = {}
     context.update(get_navbar_item_homepage())
+    center_sidebar_view = CenterSidebarView()
+    context.update(center_sidebar_view.get_side_bar_view())
     return render(request, 'datacenter/home/center_home.html', context=context)

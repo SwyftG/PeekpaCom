@@ -1,0 +1,58 @@
+<div class="row" id="top-actress-block">
+
+</div>
+
+<script id="data-list" type="text/html">
+    {% verbatim %}
+    {{ if data.top_actresses }}
+    <div class="card card-primary card-tabs ml-2 mr-2 w-100" style="min-height: 250px">
+        <div class="card-header p-0 pt-1">
+            <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                <li class="pt-2 px-3"><h3 class="card-title text-bold text-lg">名师专场</h3></li>
+                {{ each data.top_actresses actress index}}
+                <li class="nav-item">
+                    <a class="nav-link {{ if index == 0 }}active {{ /if }}" id="{{ actress.tab_id }}-tab"
+                       data-toggle="pill"
+                       href="#{{ actress.tab_id }}" role="tab" aria-controls="{{ actress.tab_id }}"
+                       aria-selected="{{ if index == 0 }}true {{ else }}false {{ /if }}">{{ actress.name }}</a>
+                </li>
+                {{ /each }}
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="custom-tabs-two-tabContent">
+                {{ each data.top_actresses actress index}}
+                <div class="tab-pane fade {{ if index == 0 }}show active{{ /if }}" id="{{ actress.tab_id }}"
+                     role="tabpanel"
+                     aria-labelledby="{{ actress.tab_id }}-tab">
+                    <div class="row">
+                        {{ each actress.data_list item }}
+                        <div class="row col-sm-3 border p-0 m-0">
+                            <div class="col-sm-5 d-flex align-items-center">
+                                <a href="{{ item.video_poster }}" target="_blank" class="w-100">
+                                <img src="{{ item.video_poster_sm }}" class="w-100 " alt=""></a>
+                            </div>
+                            <div class="col-sm-7 d-flex flex-column">
+                                <p class="small mt-2 mb-0 pb-2">
+                                    <a href="{{ item.url }}" class="small text-dark" target="_blank">{{ item.video_title }}</a>
+                                </p>
+                                <p class="small mt-2 text-info">发售日期：{{ item.video_publish_day }}</p>
+                                <div class="d-flex flex-row justify-content-between mt-auto">
+                                    <p class="font-weight-light small pl-1 text-info">番号：{{ item.video_number }}</p>
+                                    <a class="font-weight-bold small pr-1 text-danger" href="{{ item.pre_video_url }}" target="_blank" >
+                                        <p class="mb-0 border border-danger pl-2 pr-2">VIDEO</p>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{ /each }}
+                    </div>
+                </div>
+                {{ /each }}
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+    {% endverbatim %}
+</script>

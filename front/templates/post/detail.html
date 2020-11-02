@@ -2,12 +2,12 @@
 {% load post_filters %}
 
 {% block title %}
-Peekpa
+    Peekpa
 {% endblock %}
 
 {% block head %}
     <link rel="stylesheet"
-      href="{% static 'highlight/css/default.min.css' %}">
+          href="{% static 'highlight/css/default.min.css' %}">
     <script src="{% static 'highlight/js/highlight.min.js' %}"></script>
     <script>hljs.initHighlightingOnLoad()</script>
     <link rel="stylesheet"
@@ -18,7 +18,12 @@ Peekpa
 {% endblock %}
 
 {% block main %}
-<div class="container mt-4 mb-4">
+    <div class="col-sm-2 position-static position-sticky sticky-top float-left list-group-flush pt-4 pr-1">
+        {% autoescape off %}
+            {{ toc }}
+        {% endautoescape %}
+    </div>
+    <div class="container mt-4 mb-4">
     <div class="row">
         <div class="col-md-8">
             <!-- 标题和文章基本信息 -->
@@ -31,9 +36,12 @@ Peekpa
                 <div class="col-md-12">
                     <div class="d-flex flex-row">
                         <p class="font-weight-light small mr-4">{{ post_data.author.username }}</p>
-                        <p class="font-weight-light small mr-4"><a href="#" class="text-decoration-none text-dark"><i class="fas fa-list mr-1"></i>{{ post_data.category.name }}</a></p>
-                        <p class="font-weight-light small mr-4"><i class="far fa-clock mr-1"></i>{{ post_data.publish_time_show | datapicker_format }}</p>
-                        <p class="font-weight-light small"><i class="fas fa-eye mr-1"></i>阅读({{ post_data.read_num }})</p>
+                        <p class="font-weight-light small mr-4"><a href="#" class="text-decoration-none text-dark"><i
+                                class="fas fa-list mr-1"></i>{{ post_data.category.name }}</a></p>
+                        <p class="font-weight-light small mr-4"><i
+                                class="far fa-clock mr-1"></i>{{ post_data.publish_time_show | datapicker_format }}</p>
+                        <p class="font-weight-light small"><i class="fas fa-eye mr-1"></i>阅读({{ post_data.read_num }})
+                        </p>
                     </div>
                 </div>
             </div>
@@ -41,8 +49,8 @@ Peekpa
             <div class="row" style="background-color: white">
                 <div class="col-md-12 pb-4" id="post-content">
                     {% if post_data.is_md %}
-                        {% autoescape off%}
-                        {{ post_data.content_html}}
+                        {% autoescape off %}
+                            {{ post_data.content_html }}
                         {% endautoescape %}
                     {% else %}
                         {{ post_data.content }}
@@ -54,6 +62,5 @@ Peekpa
         {% include 'base/right_section.html' %}
 
     </div>
-</div>
 {% endblock %}
 

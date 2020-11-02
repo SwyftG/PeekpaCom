@@ -86,7 +86,7 @@
 
                                     {{ if data.page_obj_has_previous }}
                                         <li class="paginate_button page-item "><button class="page-link page-link-button"
-                                          href="../peekpa/data/?p={{ data.page_obj_previous_page_number }}{{ data.url_query }}">上一页</button></li>
+                                          href="../center/data/?p={{ data.page_obj_previous_page_number }}{{ data.url_query }}">上一页</button></li>
                                     {{ else }}
                                         <li class="paginate_button page-item previous disabled"><a
                                                 class="page-link"
@@ -96,7 +96,7 @@
 
 
                                     {{ if data.left_has_more }}
-                                        <li class="paginate_button page-item "><button class="page-link page-link-button" href="../peekpa/data/?p=1">1</button>
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button" href="../center/data/?p=1">1</button>
                                         </li>
                                         <li class="paginate_button page-item "><a class="page-link"
                                                                                   href="javascript:void(0);">...</a>
@@ -106,17 +106,17 @@
                                     {{ each data.left_pages left_page }}
 
                                         <li class="paginate_button page-item "><button class="page-link page-link-button"
-                                          href="../peekpa/data/?p={{ left_page }}{{ data.url_query }}">{{ left_page }}</button></li>
+                                          href="../center/data/?p={{ left_page }}{{ data.url_query }}">{{ left_page }}</button></li>
                                     {{ /each }}
 
 
                                     <li class="paginate_button page-item  active"><button class="page-link page-link-button"
-                                         href="../peekpa/data/?p={{ data.current_page }}{{ data.url_query }}">{{ data.current_page }}</button></li>
+                                         href="../center/data/?p={{ data.current_page }}{{ data.url_query }}">{{ data.current_page }}</button></li>
 
 
                                     {{ each data.right_pages right_page }}
                                         <li class="paginate_button page-item "><button class="page-link page-link-button"
-                                          href="../peekpa/data/?p={{ right_page }}{{ data.url_query }}">{{ right_page }}</button></li>
+                                          href="../center/data/?p={{ right_page }}{{ data.url_query }}">{{ right_page }}</button></li>
                                     {{ /each }}
 
 
@@ -125,13 +125,13 @@
                                                                                   href="javascript:void(0);">...</a>
                                         </li>
                                         <li class="paginate_button page-item "><button class="page-link page-link-button"
-                                          href="../peekpa/data/?p={{ data.num_pages }}{{ data.url_query }}" >{{ data.num_pages }}</button></li>
+                                          href="../center/data/?p={{ data.num_pages }}{{ data.url_query }}" >{{ data.num_pages }}</button></li>
                                     {{ /if }}
 
 
                                     {{ if data.page_obj_has_next }}
                                         <li class="paginate_button page-item next"><button class="page-link page-link-button"
-                                          href="../peekpa/data/?p={{ data.page_obj_next_page_number }}{{ data.url_query }}" target="_blank">下一页</button>
+                                          href="../center/data/?p={{ data.page_obj_next_page_number }}{{ data.url_query }}" target="_blank">下一页</button>
                                         </li>
                                     {{ else }}
                                         <li class="paginate_button page-item next disabled"><a class="page-link"

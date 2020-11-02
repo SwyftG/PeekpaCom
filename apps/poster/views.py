@@ -1,3 +1,4 @@
+import markdown
 from django.db.models import F
 from django.shortcuts import render
 from apps.poster.models import Post
@@ -10,8 +11,21 @@ from apps.base.tracking_view import peekpa_tracking
 @peekpa_tracking
 def detail(request, time_id):
     post = Post.objects.select_related('category', 'author').get(time_id=time_id)
+    md = markdown.Markdown(
+        extensions=[
+            # 包含 缩写、表格等常用扩展
+            'markdown.extensions.extra',
+            # 语法高亮扩展
+            'markdown.extensions.codehilite',
+            # 目录扩展
+            'markdown.extensions.toc',
+        ]
+    )
+    # post.content_html = md.convert(post.content)
+    md.convert(post.content)
     context = {
         'post_data': post,
+        'toc': process_toc(md.toc)
     }
     context.update(get_read_most_post())
     context.update(get_exchange_link())
@@ -19,6 +33,9 @@ def detail(request, time_id):
     handle_visited(request, time_id)
     return render(request, 'post/detail.html', context=context)
 
+def process_toc(toc):
+    toc = toc.replace('<div class="toc">', '').replace('</div>','').replace('<ul>','<ul class="list-group">').replace('<li>','<li class="list-group-item">')
+    return toc
 
 @peekpa_tracking
 def post_list_view(request):

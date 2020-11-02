@@ -1,0 +1,172 @@
+{% extends 'datacenter/base/center_base.html' %}
+{% load post_filters %}
+
+{% block head %}
+    <script src="{% static 'js/center_manage.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Jav海报
+{% endblock %}
+
+{% block main %}
+    <section class="content">
+        <div class="container-fluid pt-4">
+            {% include 'base/loading.html' %}
+            <div class="row" id="content-block">
+
+            </div>
+        </div>
+    </section>
+
+    <script id="data-list" type="text/html">
+    {% verbatim %}
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="p-2 d-flex">
+                        <p class="h3">{{ data.cur_fid_name }}区</p>
+                        <div action="" method="get" class="form-inline ml-auto">
+                            <input type="text" value="{{ cur_fid }}" name="fid" hidden>
+                            <div class="form-group mr-4">
+                                <label for="">时间：</label>
+                                {{ if data.select_time }}
+                                    <input type="text" class="form-control input-time" name="day" id="start-picker"
+                                           readonly value="{{ data.select_time }}">
+                                {{ else }}
+                                    <input type="text" class="form-control input-time" name="day" id="start-picker"
+                                           readonly>
+                                {{ /if }}
+                            </div>
+                            <div class="form-group mr-4">
+                                <label for="title-input">标题：</label>
+                                {{ if data.search_key }}
+                                    <input type="text" class="form-control input-search-key" name="search" id="title-input"
+                                           placeholder="关键字"
+                                           value="{{ data.search_key }}">
+                                {{ else }}
+                                    <input type="text" class="form-control input-search-key" name="search" id="title-input"
+                                           placeholder="关键字">
+                                {{ /if }}
+                            </div>
+                            <div class="form-group mr-4">
+                                <button class="btn btn-primary search-button" href="/center/data/?fid={{ data.cur_fid }}">查询</button>
+                            </div>
+                            <div class="form-group">
+                                <a href="?fid={{ data.cur_fid }}">清除查询</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        {{ each data.list_data item }}
+                            <div class="row col-sm-6 pl-3 pr-3 mb-4">
+                                <div class="row col-sm-12 p-0" style="height: 200px;">
+                                    <div class="col-sm-8 h-100 pl-0">
+                                        <a href="http://javpop.com/{{ item.video_post_time.substring(0,4) }}/{{ item.video_post_time.substring(5,7) }}/{{ item.video_post_time.substring(8,10) }}/{{ item.video_num }}.html"
+                                                   class="w-100 h-100" target="_blank">
+                                            {{ each item.video_poster_list video_poster index }}
+                                                {{ if index == 0 }}
+                                                    <img src="{{ video_poster }}" class="h-100 w-100"
+                                                     alt="...">
+                                                {{ /if }}
+                                            {{ /each }}
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-4 h-100 pr-0">
+                                        {{ each item.video_screenshot_list video_screen index }}
+                                            {{ if index == 0 }}
+                                                <a href="{{ video_screen }}" class="w-100 h-100" target="_blank">
+                                                    <img src="{{ video_screen }}" class="h-100 w-100"
+                                                         alt="...">
+                                                </a>
+                                            {{ /if }}
+                                        {{ /each }}
+                                    </div>
+                                </div>
+                                <div class="row col-sm-12 mt-2">
+                                    <a href="" style="color: #000; text-decoration: none;" target="_blank">
+                                        <p class="h6">{{ item.video_title.substring(0,70) }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        {{ /each }}
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <p class="pull-left">第{{ data.current_page }}页/总共{{ data.num_pages }}页{{ if data.from_cache }}c{{ else }}d{{ /if }}</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers float-right">
+                                <ul class="pagination">
+
+                                    {{ if data.page_obj_has_previous }}
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button"
+                                          href="../center/data/?p={{ data.page_obj_previous_page_number }}{{ data.url_query }}">上一页</button></li>
+                                    {{ else }}
+                                        <li class="paginate_button page-item previous disabled"><a
+                                                class="page-link"
+                                                href="javascript:void(0);">上一页</a>
+                                        </li>
+                                    {{ /if }}
+
+
+                                    {{ if data.left_has_more }}
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button" href="../center/data/?p=1">1</button>
+                                        </li>
+                                        <li class="paginate_button page-item "><a class="page-link"
+                                                                                  href="javascript:void(0);">...</a>
+                                        </li>
+                                    {{ /if }}
+
+                                    {{ each data.left_pages left_page }}
+
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button"
+                                          href="../center/data/?p={{ left_page }}{{ data.url_query }}">{{ left_page }}</button></li>
+                                    {{ /each }}
+
+
+                                    <li class="paginate_button page-item  active"><button class="page-link page-link-button"
+                                         href="../center/data/?p={{ data.current_page }}{{ data.url_query }}">{{ data.current_page }}</button></li>
+
+
+                                    {{ each data.right_pages right_page }}
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button"
+                                          href="../center/data/?p={{ right_page }}{{ data.url_query }}">{{ right_page }}</button></li>
+                                    {{ /each }}
+
+
+                                    {{ if data.right_has_more }}
+                                        <li class="paginate_button page-item "><a class="page-link"
+                                                                                  href="javascript:void(0);">...</a>
+                                        </li>
+                                        <li class="paginate_button page-item "><button class="page-link page-link-button"
+                                          href="../center/data/?p={{ data.num_pages }}{{ data.url_query }}" >{{ data.num_pages }}</button></li>
+                                    {{ /if }}
+
+
+                                    {{ if data.page_obj_has_next }}
+                                        <li class="paginate_button page-item next"><button class="page-link page-link-button"
+                                          href="../center/data/?p={{ data.page_obj_next_page_number }}{{ data.url_query }}" target="_blank">下一页</button>
+                                        </li>
+                                    {{ else }}
+                                        <li class="paginate_button page-item next disabled"><a class="page-link"
+                                                                                               href="javascript:void(0);">下一页</a>
+                                        </li>
+                                    {{ /if }}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endverbatim %}
+    </script>
+{% endblock %}

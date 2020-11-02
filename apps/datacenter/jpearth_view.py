@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, reverse
 from ratelimit.decorators import ratelimit
 
 from apps.base.redis_cache import get_data_from_cache
+from apps.datacenter.common_view import get_side_bar_view
 from .decorators import peekpa_code_required
 from django.utils.decorators import method_decorator
 from apps.base.tracking_view import peekpa_tracking
@@ -41,6 +42,7 @@ class JpEarthView(View):
             "from_cache": from_cache
         }
         context.update(self.get_pagination_data(paginator, page_obj))
+        context.update(get_side_bar_view())
         return render(request, 'datacenter/jpearth/manage.html', context=context)
 
     def get_data_from_db(self, handle_type, search_key):

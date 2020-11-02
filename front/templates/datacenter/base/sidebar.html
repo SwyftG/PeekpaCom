@@ -16,12 +16,13 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                {% url 'center:center_center_home_view' as cms_home_page %}
+                {% url 'center:center_center_home_view' as center_center_home_view %}
                 <li class="nav-item">
-                    <a href="{{ cms_home_page }}" class="nav-link {% if request.path == cms_home_page %}active{% endif %}">
+                    <a href="{{ center_center_home_view }}"
+                       class="nav-link {% if request.path == center_center_home_view %}active{% endif %}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Home
+                            本日数据{% if from_cache %}C{% else %}D{% endif %}
                         </p>
                     </a>
                 </li>
@@ -36,13 +37,130 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="{{ jpearth_manage_view }}" class="nav-link {% if request.path == jpearth_manage_view %}active{% endif %}">
+                        <a href="{{ jpearth_manage_view }}?fid=900" class="nav-link {% if request.path == jpearth_manage_view %}active{% endif %}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>MongoDB 数据源</p>
                         </a>
                       </li>
                     </ul>
                 </li>
+                {% if caoliu_nav_list %}
+                    {% url 'center:caoliu_list_view' as root_link %}
+                    <li class="nav-item has-treeview {% if request.path == root_link %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == root_link %}active{% endif %}">
+                            <i class="nav-icon far fa-copy"></i>
+                            <p>
+                                1024
+                                <i class="right fas fa-angle-left"></i>
+                                {% if today_caoliu_total_new_number %}
+                                    <span class="badge badge-danger right">+{{ today_caoliu_total_new_number }}</span>
+                                {% endif %}
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% for caoliu_nav_item in caoliu_nav_list %}
+                                <li class="nav-item">
+                                    <a href="{{ root_link }}{{ caoliu_nav_item.url_path }}"
+                                       class="nav-link {% if request.GET.fid in caoliu_nav_item.url_path %}active{% endif %}" data-url="{{ caoliu_nav_item.url_path }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ caoliu_nav_item.show_name }}</p>
+                                        {% if caoliu_nav_item.count_number %}
+                                            <span class="badge badge-success right">{{ caoliu_nav_item.count_number }}</span>
+                                        {% endif %}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if jav_nav_list %}
+                    {% url 'center:javpop_view' as root_link %}
+                    <li class="nav-item has-treeview {% if request.path == root_link %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == root_link %}active{% endif %}">
+                            <i class="nav-icon far fa-copy"></i>
+                            <p>
+                                JavPop
+                                <i class="right fas fa-angle-left"></i>
+                                {% if today_javpop_total_new_number %}
+                                    <span class="badge badge-danger right">+{{ today_javpop_total_new_number }}</span>
+                                {% endif %}
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if caoliu_nav_list %}
+                                {% for jav_nav_item in jav_nav_list %}
+                                    <li class="nav-item">
+                                        <a href="{{ root_link }}{{ jav_nav_item.url_path }}"
+                                           class="nav-link {% if request.GET.fid in jav_nav_item.url_path %}active{% endif %}" data-url="{{ jav_nav_item.url_path }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ jav_nav_item.show_name }}</p>
+                                            {% if jav_nav_item.count_number %}
+                                                <span class="badge badge-success right">{{ jav_nav_item.count_number }}</span>
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if avgle_nav_list %}
+                    {% url 'center:avgle_view' as root_link %}
+                    <li class="nav-item has-treeview {% if request.path == root_link %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == root_link %}active{% endif %}">
+                            <i class="nav-icon far fa-copy"></i>
+                            <p>
+                                Avgle(需科学)
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if avgle_nav_list %}
+                                {% for nav_item in avgle_nav_list %}
+                                    <li class="nav-item">
+                                        <a href="{{ root_link }}{{ nav_item.url_path }}"
+                                           class="nav-link {% if request.GET.fid in nav_item.url_path %}active{% endif %}" data-url="{{ nav_item.url_path }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ nav_item.show_name }}</p>
+                                            {% if nav_item.count_number %}
+                                                <span class="badge badge-success right">{{ nav_item.count_number }}</span>
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if nineone_nav_list %}
+                    {% url 'center:nineone_view' as root_link %}
+                    <li class="nav-item has-treeview {% if request.path == root_link %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if request.path == root_link %}active{% endif %}">
+                            <i class="nav-icon far fa-copy"></i>
+                            <p>
+                                91Pron
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            {% if nineone_nav_list %}
+                                {% for nav_item in nineone_nav_list %}
+                                    <li class="nav-item">
+                                        <a href="{{ root_link }}{{ nav_item.url_path }}"
+                                           class="nav-link {% if request.GET.fid in nav_item.url_path %}active{% endif %}" data-url="{{ nav_item.url_path }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>{{ nav_item.show_name }}</p>
+                                            {% if nav_item.count_number %}
+                                                <span class="badge badge-success right">{{ nav_item.count_number }}</span>
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

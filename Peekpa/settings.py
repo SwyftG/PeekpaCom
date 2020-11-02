@@ -27,7 +27,7 @@ SECRET_KEY = '$^m&l2iyo59==x5g4e-%7#8&8cpd_cjedk9fscw4)oo!_#nb!v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'Peekpa.wsgi.application'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",    #redis的地址
+        "LOCATION": "redis://redis:6379",    #redis的地址
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "CONNECTION_POOL_KWARGS": {"max_connections": 100}  #池的个数
@@ -119,11 +119,13 @@ DATABASES = {
         # 数据库的名字
         'NAME': 'peekpa_db1',
         # 连接mysql数据库的用户名
-        'USER': 'root',
+        'USER': 'peekpa',
         # 连接mysql数据库的密码
         'PASSWORD': 'Peekpa2020',
         # mysql数据库的主机地址
-        'HOST': '127.0.0.1',
+        # 'HOST': '127.0.0.1',
+        # docker-compose中mysql数据库的主机地址
+        'HOST': 'db',
         # mysql数据库的端口号
         'PORT': '3306',
     }

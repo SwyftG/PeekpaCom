@@ -32,7 +32,7 @@
                                     <label for="username" class="col-form-label col-sm-2 text-center">Username</label>
                                     <div class="col-sm-10">
                                         {% if item_data %}
-                                            <input type="text" class="form-control" id="username" name="username" value="{{ item_data.username }}">
+                                            <input type="text" class="form-control" id="username" name="username" value="{{ item_data.username }}" readonly>
                                         {% else %}
                                             <input type="text" class="form-control" id="username" name="username">
                                         {% endif %}
@@ -43,7 +43,7 @@
                                     <label for="email" class="col-form-label col-sm-2 text-center">Email</label>
                                     <div class="col-sm-10">
                                         {% if item_data %}
-                                            <input type="email" class="form-control" id="email" name="email" value="{{ item_data.email }}">
+                                            <input type="email" class="form-control" id="email" name="email" value="{{ item_data.email }}" readonly>
                                         {% else %}
                                             <input type="email" class="form-control" id="email" name="email">
                                         {% endif %}
@@ -53,11 +53,11 @@
                                 <div class="form-group row ">
                                     <label for="password" class="col-form-label col-sm-2 text-center">Password</label>
                                     <div class="col-sm-10">
-                                        {% if item_data %}
-                                            <input type="text" class="form-control" id="password" name="password" value="{{ item_data.password }}">
-                                        {% else %}
+{#                                        {% if item_data %}#}
+{#                                            <input type="text" class="form-control" id="password" name="password" value="{{ item_data.password }}">#}
+{#                                        {% else %}#}
                                             <input type="text" class="form-control" id="password" name="password">
-                                        {% endif %}
+{#                                        {% endif %}#}
                                     </div>
                                 </div>
 

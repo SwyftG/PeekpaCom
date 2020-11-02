@@ -18,10 +18,18 @@ class NavbarItem(models.Model):
     SHOW_PAGE_HOMEPAGE = 0
     SHOW_PAGE_CMS = 1
     SHOW_PAGE_FORUM = 2
+    SHOW_PAGE_CAOLIU = 3
+    SHOW_PAGE_JAV = 4
+    SHOW_PAGE_AVGLE = 5
+    SHOW_PAGE_NINEONE = 6
     SHOW_PAGE_ITEMS = (
         (SHOW_PAGE_HOMEPAGE, '首页'),
         (SHOW_PAGE_CMS, 'CMS'),
         (SHOW_PAGE_FORUM, '论坛'),
+        (SHOW_PAGE_CAOLIU, '1024'),
+        (SHOW_PAGE_JAV, 'JavPop'),
+        (SHOW_PAGE_AVGLE, 'Avgle'),
+        (SHOW_PAGE_NINEONE, '91Pron'),
     )
     name = models.CharField(max_length=30)
     show_name = models.CharField(max_length=30)

@@ -1,10 +1,10 @@
+import markdown
 from django.views.generic import View
 from .forms import PostForm, PostEditForm
 from apps.poster.models import Post, Category, Tag
 from apps.peekpauser.models import User
 from django.shortcuts import render, redirect, reverse
 from utils import restful
-import mistune
 from django.utils.decorators import method_decorator
 from apps.peekpauser.decorators import peekpa_login_required
 
@@ -66,7 +66,17 @@ class PostView(View):
                 if request.user.is_superuser:
                     instance = Post.objects.filter(id=id)
                     if is_md:
-                        content_html = mistune.markdown(content)
+                        md = markdown.Markdown(
+                            extensions=[
+                                # 包含 缩写、表格等常用扩展
+                                'markdown.extensions.extra',
+                                # 语法高亮扩展
+                                'markdown.extensions.codehilite',
+                                # 目录扩展
+                                'markdown.extensions.toc',
+                            ]
+                        )
+                        content_html = md.convert(content)
                     instance.update(title=title, description=description, author=author,
                                         thumbnail=thumbnail, status=status, content=content,
                                         is_md=is_md, category=category, priority=priority,
